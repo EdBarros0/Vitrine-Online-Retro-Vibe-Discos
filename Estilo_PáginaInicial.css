@@ -33,6 +33,7 @@ body{
 }
 
 .logo{
-    width: 10%;
-    height: auto;
+    width: 150px; /* largura padrão */
+    max-width: 100%; /* nunca exceder o tamanho do container */
+    height: auto; /* mantém proporção */
 }
