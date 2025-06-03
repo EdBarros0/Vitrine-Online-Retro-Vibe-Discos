@@ -90,16 +90,20 @@ body{
 }
 
 .titulo-genero{
-    background-color: #E05338;
+    background-image: url(Assets/shape-background.png);
     width: 100vw;
     min-height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-position: center;
+    background-size: 100% 70px;
 }
 
 #texto-genero{
     font-family: 'DM Sans';
+    color: #E05338;
+    font-size: 20px;
 }
 
 #container-genero-titulo {
