@@ -21,9 +21,6 @@ body{
     height:120px;
     display: flex;
     align-items: center;
-
-    
-
 }
 .header1{
     width: 50%;
@@ -92,7 +89,7 @@ body{
 }
 
 .titulo-genero{
-    background-image: url(Assets/shape-background.png);
+    background-image: url(Assets/shape-background2.png);
     width: 100vw;
     min-height: 70px;
     display: flex;
@@ -133,8 +130,28 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
-    margin-bottom: 10%;
+    max-width: 250px;
+    width: calc(100% / 4 - 20px); 
+    margin: 10px; 
+    margin-bottom: 20px;
+}
+/* Mantém os produtos em 2 ou 1 coluna conforme o site vai encolhendo*/
+@media (max-width: 768px) {
+    .produto {
+        width: calc(100% / 2 - 20px);
+    }
+    #texto-titulo{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .produto {
+        width: calc(100% - 20px);
+    }
+    #texto-titulo{
+        font-size: 10px;
+    }
 }
 
 .imagem-produto {
@@ -180,4 +197,35 @@ body{
 
 #mapa{
     height: 90px;
+}
+
+.botao-email {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 10vh;               /* largura e altura iguais = redondo */
+  height: 10vh;
+  background-color: #e63946;
+  color: white;
+  border-radius: 50%;        /* deixa o botão circular */
+  font-size: 28px;           /* tamanho do ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.botao-email:hover {
+  background-color: #d62828;
+  transform: scale(1.1);
+}
+
+.botao-email img {
+  align-self: center;
+  color: #fff;
+  width: 6vh;
+  height: 6vh;
 }
