@@ -21,9 +21,6 @@ body{
     height:120px;
     display: flex;
     align-items: center;
-
-    
-
 }
 .header1{
     width: 50%;
@@ -133,8 +130,28 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
-    margin-bottom: 10%;
+    max-width: 250px;
+    width: calc(100% / 4 - 20px); 
+    margin: 10px; 
+    margin-bottom: 20px;
+}
+/* Mantém os produtos em 2 ou 1 coluna conforme o site vai encolhendo*/
+@media (max-width: 768px) {
+    .produto {
+        width: calc(100% / 2 - 20px);
+    }
+    #texto-titulo{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .produto {
+        width: calc(100% - 20px);
+    }
+    #texto-titulo{
+        font-size: 10px;
+    }
 }
 
 .imagem-produto {
@@ -178,6 +195,10 @@ body{
     color: white;
 }
 
+#mapa{
+    height: 90px;
+}
+
 .botao-email {
   position: fixed;
   bottom: 20px;
@@ -207,8 +228,4 @@ body{
   color: #fff;
   width: 6vh;
   height: 6vh;
-}
-
-#mapa{
-    height: 90px;
 }
