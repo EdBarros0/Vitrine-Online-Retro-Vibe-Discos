@@ -43,39 +43,10 @@
         </div>
     </div>
     
-    <div class="conteudo">
-        <div class="produto">
+    <div id="conteudo">
+        <!-- <div class="produto">
             <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
-        <div class="produto">
-            <img class="imagem-produto" src="/Assets/produto.png" alt="Imagem do disco">
-            <p class="texto-produto">Nome do disco</p>
-        </div>
+            <p class="texto-produto">Nome do disco</p> -->
     </div>
 
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
@@ -89,6 +60,29 @@
             CNPJ: 81.672.563/0001-28 <br>
             ENDEREÇO: Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ
         </p>
-<iframe class="Mapa_footer" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7351.902618448415!2d-42.016216!3d-22.878257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9704b6ffdec34b%3A0xfc0112f2ddb5a615!2sAv.%20Nossa%20Sra.%20da%20Assun%C3%A7%C3%A3o%2C%20781%20-%20S%C3%A3o%20Bento%2C%20Cabo%20Frio%20-%20RJ%2C%2028906-200!5e0!3m2!1spt-BR!2sbr!4v1749168036863!5m2!1spt-BR!2sbr" width="30%" height="90%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="Mapa_footer" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7351.902618448415!2d-42.016216!3d-22.878257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9704b6ffdec34b%3A0xfc0112f2ddb5a615!2sAv.%20Nossa%20Sra.%20da%20Assun%C3%A7%C3%A3o%2C%20781%20-%20S%C3%A3o%20Bento%2C%20Cabo%20Frio%20-%20RJ%2C%2028906-200!5e0!3m2!1spt-BR!2sbr!4v1749168036863!5m2!1spt-BR!2sbr" width="30%" height="90%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </footer>
+    
+    <script>
+        function cria_produto(img_path = "", p_name = ""){
+            const conteudo = document.getElementById("conteudo");
+            const product_box = document.createElement('div');
+            const product_img = document.createElement('img');
+            const product_name = document.createElement('p');
+
+            product_box.className = "produto";
+
+            product_img.className = "imagem-produto";
+            product_img.alt = "Imagem do disco";
+            product_img.src = img_path;
+
+            product_name.className = "texto-produto";
+            product_name.textContent = p_name;
+
+            product_box.appendChild(product_img);
+            product_box.appendChild(product_name);
+            conteudo.appendChild(product_box);
+        }
+    </script>
 </body>
 </html>

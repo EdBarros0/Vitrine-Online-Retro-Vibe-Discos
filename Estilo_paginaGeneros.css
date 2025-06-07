@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 body{
     background-color:#FFFFFF;
     display: flex;
@@ -117,7 +121,7 @@ body{
 
 
 /* Produtos */
-.conteudo{
+#conteudo{
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -201,7 +205,7 @@ body{
 
 .botao-email {
   position: fixed;
-  bottom: 20px;
+  bottom: 160px;
   right: 20px;
   width: 10vh;               /* largura e altura iguais = redondo */
   height: 10vh;
