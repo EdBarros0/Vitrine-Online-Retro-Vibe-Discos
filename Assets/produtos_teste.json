@@ -1,0 +1,112 @@
+[
+  {
+    "Artista": "Pink Floyd",
+    "album": "The Dark Side of the Moon",
+    "Lançamento": 1973,
+    "Faixas": 10,
+    "Duração": 42,
+    "Nota": 10,
+    "imagem": {
+    "url": "data:image/png;base64,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"
+    }
+  },
+  {
+    "Artista": "Michael Jackson",
+    "album": "Thriller",
+    "Lançamento": 1982,
+    "Faixas": 9,
+    "Duração": 42,
+    "Nota": 9,
+    "imagem": {
+    "url": "https://upload.wikimedia.org/wikipedia/pt/thumb/3/30/Michael_Jackson_-_Thriller.jpg/250px-Michael_Jackson_-_Thriller.jpg"
+    }
+  },
+  {
+    "Artista": "Kendrick Lamar",
+    "album": "To Pimp a Butterfly",
+    "Lançamento": 2015,
+    "Faixas": 16,
+    "Duração": 78,
+    "Nota": 10,
+    "imagem": {
+    "url": "https://upload.wikimedia.org/wikipedia/pt/c/c9/To_Pimp_a_Butterfly.jpg"
+    }
+  },
+  {
+    "Artista": "Daft Punk",
+    "album": "Random Access Memories",
+    "Lançamento": 2013,
+    "Faixas": 13,
+    "Duração": 74,
+    "Nota": 9,
+    "imagem": {
+    "url": "https://upload.wikimedia.org/wikipedia/pt/7/76/Random_Access_Memories_capa.jpg"
+    }
+  },
+  {
+    "Artista": "Chico Buarque",
+    "album": "Construção",
+    "Lançamento": 1971,
+    "Faixas": 11,
+    "Duração": 36,
+    "Nota": 10,
+    "imagem": {
+    "url": "https://s2-g1.glbimg.com/W6bN0XGqdNN54KNlaROvb3ZDaFs=/0x0:1600x1600/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2021/Q/Q/BwKPFHQda860UKzrVEbg/chicobuarqueconstrucaolpcapa.jpg"
+    }
+  },
+  {
+    "Artista": "Miles Davis",
+    "album": "Kind of Blue",
+    "Lançamento": 1959,
+    "Faixas": 5,
+    "Duração": 45,
+    "Nota": 10,
+    "imagem": {
+    "url": "/Assets/produto.png"
+    }
+  },
+  {
+    "Artista": "Parliament",
+    "album": "Mothership Connection",
+    "Lançamento": 1975,
+    "Faixas": 9,
+    "Duração": 45,
+    "Nota": 8,
+    "imagem": {
+    "url": "https://upload.wikimedia.org/wikipedia/en/e/ef/ParliamentMothershipConnection.jpg"
+    }
+  },
+  {
+    "Artista": "Chitãozinho & Xororó",
+    "album": "Planeta Azul",
+    "Lançamento": 1995,
+    "Faixas": 12,
+    "Duração": 45,
+    "Nota": 7,
+    "imagem": {
+    "url": "https://upload.wikimedia.org/wikipedia/pt/b/bb/Planeta_Azul.jpg"
+    }
+  },
+  {
+    "Artista": "Bob Marley",
+    "album": "Exodus",
+    "Lançamento": 1977,
+    "Faixas": 14,
+    "Duração": 56,
+    "Nota": 9,
+    "imagem": {
+    "url": "https://m.media-amazon.com/images/I/81J3LJGOsfL._UF1000,1000_QL80_.jpg"
+    }
+  },
+  {
+    "Artista": "Metallica",
+    "album": "Master of Puppets",
+    "Lançamento": 1986,
+    "Faixas": 8,
+    "Duração": 54,
+    "Nota": 10,
+    "imagem": {
+    "url": "https://upload.wikimedia.org/wikipedia/pt/4/4d/Master_of_Puppets.jpg"
+    }
+  }
+]
