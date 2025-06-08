@@ -17,7 +17,6 @@ body{
     overflow-x: hidden;
 }
 
-
 /* Header e Subheader */
 .header{
     background:#E05338;
@@ -121,7 +120,7 @@ body{
 
 
 /* Produtos */
-#conteudo{
+.conteudo{
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -130,28 +129,16 @@ body{
     width: 100%;
 }
 
-.produto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 250px;
-    width: calc(100% / 4 - 20px); 
-    margin: 10px; 
-    margin-bottom: 20px;
-}
 /* Mantém os produtos em 2 ou 1 coluna conforme o site vai encolhendo*/
 @media (max-width: 768px) {
-    .produto {
-        width: calc(100% / 2 - 20px);
-    }
     #texto-titulo{
         font-size: 20px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
     .produto {
-        width: calc(100% - 20px);
+        width: 40%;
     }
     #texto-titulo{
         font-size: 10px;
@@ -162,13 +149,25 @@ body{
     width: 100%;
 }
 
+/* Menu suspenso */
+#fundo-preto{
+    visibility: hidden;
+    position: fixed; 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: black; 
+    opacity: 0.8;
+}
+
 #menu-suspenso{
     visibility: hidden;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     background-color: white;
-    position: absolute;
+    position: fixed;
     left: 25%;
     top: 25%;
     border-radius: 20px;
@@ -177,11 +176,31 @@ body{
     z-index: 1;
 }
 
-#menu-suspenso1{
+#menu-suspenso-nomeDisc{
+    font-size: 30px;
+}
+
+#menu-suspenso-container-imgdesc{
+    width: calc(100% - 20px);
     display: flex;
-    justify-content: center;
-    width: 100%;
-    padding-left: 20px;
+    justify-content: space-around;
+    flex: 0.8; /* Faz a imagem e a descrição ocuparem a maior parte do espaço no menu*/
+}
+
+#menu-suspenso-imgProduto{
+    height: 250px;
+    border-radius: 20px;
+}
+
+#menu-suspenso-txt{
+    flex: 1; 
+    flex-wrap: wrap;
+    padding-left: 30px;
+    overflow-wrap: anywhere;
+}
+
+.descricao-disco{
+    font-size: 20px;
 }
 
 /* Rodapé */
