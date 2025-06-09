@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "produtos",
+  "info": {
+    "singularName": "produto",
+    "pluralName": "produtos",
+    "displayName": "Produto"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "album": {
+      "type": "string"
+    },
+    "Artista": {
+      "type": "string"
+    },
+    "Lancamento": {
+      "type": "integer"
+    },
+    "Faixas": {
+      "type": "integer"
+    },
+    "Duracao": {
+      "type": "integer"
+    },
+    "Nota": {
+      "type": "integer"
+    },
+    "Genero": {
+      "type": "string"
+    },
+    "Capa": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}
