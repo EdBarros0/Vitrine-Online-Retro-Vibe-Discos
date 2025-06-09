@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gênero</title>
+    <link rel="stylesheet" href="Estilo_paginaGeneros.css">
+    
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <!--cabeçalho do site-->
+        <div class="header1">
+            <img class="logo" src="/Assets/logo.png" alt="Retro Vibe Discos">
+            <p id="texto-titulo">Retro Vibe Discos</p>
+        </div>
+
+        <div class="header2">
+            <div class="barra-pesquisa">
+               <img id="lupa" src="/Assets/lupa.png" alt="lupa">
+               <input id="input-pesquisa">
+            </div>
+        </div>
+    </header>
+    <section class="subheader">
+        <ul class="generos">
+            <li><p class="genre-button">Gênero</p></li>
+            <li><p class="genre-button">Gênero</p></li>
+            <li><p class="genre-button">Gênero</p></li>
+            <li><p class="genre-button">Gênero</p></li>
+        </ul>
+    </section>
+
+    <div class="titulo-genero">
+        <div id="container-genero-titulo">
+            <p id="texto-genero">Gênero</p>
+        </div>
+    </div>
+    
+    <div class="conteudo">
+    </div>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
+    <img src="/Assets/envelope.png" alt="Envelope">
+    </a>
+
+    <footer class="footer">    
+        <!--rodapé do site-->
+        <p id="informacoes-footer">
+            Retro Vibes Disco <br>
+            CNPJ: 81.672.563/0001-28 <br>
+            ENDEREÇO: Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ
+        </p>
+        <iframe class="Mapa_footer" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7351.902618448415!2d-42.016216!3d-22.878257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9704b6ffdec34b%3A0xfc0112f2ddb5a615!2sAv.%20Nossa%20Sra.%20da%20Assun%C3%A7%C3%A3o%2C%20781%20-%20S%C3%A3o%20Bento%2C%20Cabo%20Frio%20-%20RJ%2C%2028906-200!5e0!3m2!1spt-BR!2sbr!4v1749168036863!5m2!1spt-BR!2sbr" width="30%" height="90%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </footer>
+
+    <div id="fundo-preto"></div>
+
+    <div id="menu-suspenso">
+        <!-- Nome do disco-->
+        <p id="menu-suspenso-nomeDisc">Nome do disco</p>
+        <!-- Div que contém a imagem e a descrição-->
+        <div id="menu-suspenso-container-imgdesc">
+            <img id="menu-suspenso-imgProduto" src="" alt="Imagem de um disco">
+            <div id="menu-suspenso-txt">
+                <p>Artista: </p>
+                <p>Álbum: </p>
+                <p>Lançamento: </p>
+                <p>Faixas: </p>
+                <p>Duração: </p>
+                <p>Nota: </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        fetch('/Assets/produtos_teste.json')
+            .then(res => res.json())
+            .then(data => {
+            const conteudo = document.querySelector('.conteudo');
+            conteudo.style.display = 'flex';
+            conteudo.style.flexWrap = 'wrap';
+            conteudo.style.gap = '20px';
+            conteudo.style.justifyContent = 'center';
+
+            data.forEach(album => {
+                const card = document.createElement('div');
+                card.className = "produto";
+                card.style.cursor = 'pointer'
+                card.style.maxWidth = '250px';
+                card.style.background = '#f9f9f9';
+                card.style.padding = '15px';
+                card.style.borderRadius = '10px';
+                card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                card.style.textAlign = 'center';
+
+                card.innerHTML = `
+                <img src="${album.imagem.url}" alt="${album.album}" style="width:100%; height:auto; border-radius:6px;">
+                <h3>${album.album}</h3>
+                `;
+
+                // Adiciona a interação do álbum com o menu-suspenso
+                card.addEventListener('click', () => {
+                    document.getElementById('fundo-preto').style.visibility = "visible";
+                    document.getElementById('menu-suspenso').style.visibility = "visible";
+                    document.getElementById('menu-suspenso-nomeDisc').textContent = album.album;
+                    document.getElementById('menu-suspenso-imgProduto').src = album.imagem.url;
+                    const descricao = document.getElementById("menu-suspenso-txt");
+
+                    // Adiciona a descrição
+                    let i = 0; 
+                    for (const paragrafo of descricao.children){
+                        paragrafo.textContent += Object.values(album)[i];
+                        paragrafo.style.fontSize = "20px";
+                        i++;
+                    }
+                });
+
+                // Quando clica fora da tela volta pros discos
+                document.getElementById('fundo-preto').addEventListener('click', () => {
+                    document.getElementById('menu-suspenso').style.visibility = "hidden";
+                    document.getElementById('fundo-preto').style.visibility = "hidden";
+                    const descricao = document.getElementById("menu-suspenso-txt");
+                    let template = ["Artista: ", "Álbum: ", "Lançamento: ", "Faixas: ", "Duração: ", "Nota: "]
+                    
+                    // Volta a descrição pro normal
+                    let i = 0; 
+                    for (const paragrafo of descricao.children){
+                        paragrafo.textContent = template[i]
+                        paragrafo.style.fontSize = "20px";
+                        i++;
+                    }
+
+                });
+
+                conteudo.appendChild(card);
+            });
+            })
+            .catch(erro => console.error('Erro ao carregar catálogo:', erro));
+            
+    </script>
+</body>
+</html>
