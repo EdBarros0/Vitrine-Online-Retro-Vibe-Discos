@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gênero</title>
+    <title>Gêneros</title>
     <link rel="stylesheet" href="Estilo_paginaGeneros.css">
     
     <!-- Fonte -->
@@ -16,23 +16,20 @@
     <header class="header">
         <!--cabeçalho do site-->
         <div class="header1">
-            <img class="logo" src="/Assets/logo.png" alt="Retro Vibe Discos">
+            <img class="logo" src="/frontend-site/Assets/logo.png" alt="Retro Vibe Discos">
             <p id="texto-titulo">Retro Vibe Discos</p>
         </div>
 
         <div class="header2">
-            <div class="barra-pesquisa">
-               <img id="lupa" src="/Assets/lupa.png" alt="lupa">
+            <div id="barra-pesquisa">
+               <img id="lupa" src="/frontend-site/Assets/lupa.png" alt="lupa">
                <input id="input-pesquisa">
             </div>
         </div>
     </header>
     <section class="subheader">
-        <ul class="generos">
-            <li><p class="genre-button">Gênero</p></li>
-            <li><p class="genre-button">Gênero</p></li>
-            <li><p class="genre-button">Gênero</p></li>
-            <li><p class="genre-button">Gênero</p></li>
+        <ul id="lista-generos">
+            <!-- Lista de gêneros do subheader -->
         </ul>
     </section>
 
@@ -46,7 +43,7 @@
     </div>
 
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
-    <img src="/Assets/envelope.png" alt="Envelope">
+    <img src="/frontend-site/Assets/envelope.png" alt="Envelope">
     </a>
 
     <footer class="footer">    
@@ -79,67 +76,107 @@
     </div>
     
     <script>
-        fetch('/Assets/produtos_teste.json')
+        let page_genre = "Eletronica";
+        let dados = [];
+        document.getElementById('texto-genero').textContent = page_genre;
+
+        let lista_generos = document.getElementById('lista-generos');
+
+        // Muda o gênero da página
+        function mudar_genero(nomeGenero){
+            const conteudo = document.querySelector('.conteudo');
+            conteudo.innerHTML = '';
+            document.getElementById('texto-genero').textContent = nomeGenero;
+
+            dados.forEach(album => {
+                if (album.Genero == nomeGenero) {
+                    const card = document.createElement('div');
+                    card.className = "produto";
+                    card.style.cursor = 'pointer'
+                    card.style.maxWidth = '250px';
+                    card.style.background = '#f9f9f9';
+                    card.style.padding = '15px';
+                    card.style.borderRadius = '10px';
+                    card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                    card.style.textAlign = 'center';
+
+                    card.innerHTML = `
+                    <img src="${album.imagem.url}" alt="${album.album}" style="width:100%; height:auto; border-radius:6px;">
+                    <h3>${album.album}</h3>
+                    `;
+
+                    // Adiciona a interação do álbum com o menu-suspenso
+                    card.addEventListener('click', () => {
+                        document.getElementById('fundo-preto').style.visibility = "visible";
+                        document.getElementById('menu-suspenso').style.visibility = "visible";
+                        document.getElementById('menu-suspenso-nomeDisc').textContent = album.album;
+                        document.getElementById('menu-suspenso-imgProduto').src = album.imagem.url;
+                        const descricao = document.getElementById("menu-suspenso-txt");
+
+                        // Adiciona a descrição
+                        let i = 0; 
+                        for (const paragrafo of descricao.children){
+                            paragrafo.textContent += Object.values(album)[i];
+                            paragrafo.style.fontSize = "20px";
+                            i++;
+                        }
+                    });
+
+                    // Quando clica fora da tela volta pros discos
+                    document.getElementById('fundo-preto').addEventListener('click', () => {
+                        document.getElementById('menu-suspenso').style.visibility = "hidden";
+                        document.getElementById('fundo-preto').style.visibility = "hidden";
+                        const descricao = document.getElementById("menu-suspenso-txt");
+                        let template = ["Artista: ", "Álbum: ", "Lançamento: ", "Faixas: ", "Duração: ", "Nota: "]
+                        
+                        // Volta a descrição pro normal
+                        let i = 0; 
+                        for (const paragrafo of descricao.children){
+                            paragrafo.textContent = template[i]
+                            paragrafo.style.fontSize = "20px";
+                            i++;
+                        }
+
+                    });
+
+                    conteudo.appendChild(card);
+                }
+            });
+        }
+
+        fetch('/frontend-site/Assets/produtos_teste.json')
             .then(res => res.json())
             .then(data => {
-            const conteudo = document.querySelector('.conteudo');
-            conteudo.style.display = 'flex';
-            conteudo.style.flexWrap = 'wrap';
-            conteudo.style.gap = '20px';
-            conteudo.style.justifyContent = 'center';
-
-            data.forEach(album => {
-                const card = document.createElement('div');
-                card.className = "produto";
-                card.style.cursor = 'pointer'
-                card.style.maxWidth = '250px';
-                card.style.background = '#f9f9f9';
-                card.style.padding = '15px';
-                card.style.borderRadius = '10px';
-                card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-                card.style.textAlign = 'center';
-
-                card.innerHTML = `
-                <img src="${album.imagem.url}" alt="${album.album}" style="width:100%; height:auto; border-radius:6px;">
-                <h3>${album.album}</h3>
-                `;
-
-                // Adiciona a interação do álbum com o menu-suspenso
-                card.addEventListener('click', () => {
-                    document.getElementById('fundo-preto').style.visibility = "visible";
-                    document.getElementById('menu-suspenso').style.visibility = "visible";
-                    document.getElementById('menu-suspenso-nomeDisc').textContent = album.album;
-                    document.getElementById('menu-suspenso-imgProduto').src = album.imagem.url;
-                    const descricao = document.getElementById("menu-suspenso-txt");
-
-                    // Adiciona a descrição
-                    let i = 0; 
-                    for (const paragrafo of descricao.children){
-                        paragrafo.textContent += Object.values(album)[i];
-                        paragrafo.style.fontSize = "20px";
-                        i++;
-                    }
+                dados = data;
+                
+                // Adiciona os gêneros no subheader baseado nos gêneros dos álbuns
+                let nome_generos = [];
+                data.forEach(disco => {
+                    nome_generos.push(disco.Genero);
+                });
+                nome_generos = nome_generos.filter(function(nome, i) { // Tira as repetições
+                    return nome_generos.indexOf(nome) === i;
                 });
 
-                // Quando clica fora da tela volta pros discos
-                document.getElementById('fundo-preto').addEventListener('click', () => {
-                    document.getElementById('menu-suspenso').style.visibility = "hidden";
-                    document.getElementById('fundo-preto').style.visibility = "hidden";
-                    const descricao = document.getElementById("menu-suspenso-txt");
-                    let template = ["Artista: ", "Álbum: ", "Lançamento: ", "Faixas: ", "Duração: ", "Nota: "]
+                nome_generos.forEach(disco => {
+                    const item = document.createElement('li');
+                    const texto_item = document.createElement('p');
+                    texto_item.textContent = disco;
+                    texto_item.className = 'genre-button'
+                    item.appendChild(texto_item);
+                    lista_generos.appendChild(item);
+                });
                     
-                    // Volta a descrição pro normal
-                    let i = 0; 
-                    for (const paragrafo of descricao.children){
-                        paragrafo.textContent = template[i]
-                        paragrafo.style.fontSize = "20px";
-                        i++;
-                    }
 
-                });
+                // Adiciona o evento de click nos gêneros
+                for (const child of lista_generos.children){
+                    child.addEventListener('click', () => {
+                        page_genre = child.textContent;
+                        mudar_genero(page_genre);
+                    })
+                }
 
-                conteudo.appendChild(card);
-            });
+                mudar_genero(page_genre);
             })
             .catch(erro => console.error('Erro ao carregar catálogo:', erro));
             
