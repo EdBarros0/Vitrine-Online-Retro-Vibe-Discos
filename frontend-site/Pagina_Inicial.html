@@ -31,14 +31,17 @@
     </header>
 
     <section class="subheader">
-        <p class="genre-button">Gênero</p>
-        <p class="genre-button">Gênero</p>
-        <p class="genre-button">Gênero</p>
-        <p class="genre-button">Gênero</p>
-        <p class="genre-button">Gênero</p>
-        <p class="genre-button">Gênero</p>
-
+        <button id="menu-toggle">☰ Menu</button>
+        <div id="menu-itens">
+            <p class="genre-button">Gênero</p>
+            <p class="genre-button">Gênero</p>
+            <p class="genre-button">Gênero</p>
+            <p class="genre-button">Gênero</p>
+            <p class="genre-button">Gênero</p>
+            <p class="genre-button">Gênero</p>
+        </div>
     </section>
+
 
     <div class="Expositor_discos">
         <!--Sub-subheader vermelha, onde ficam os discos com maiores notas-->
@@ -51,69 +54,21 @@
         </div>
     </div>
 
-    <p style="text-align: center; font-family: 'DM Sans' ;font-size: 20px;;">Nossos Produtos</p>
     <div class="conteudo">
         <!--Aqui aparecem os discos-->
 
     </div>
 
-    <script>
-        fetch('frontend-site/Assets/produtos_teste.json')
-            .then(res => res.json())
-            .then(data => {
-                const conteudo = document.querySelector('.conteudo');
-                conteudo.style.display = 'flex';
-                conteudo.style.flexWrap = 'wrap';
-                conteudo.style.gap = '20px';
-                conteudo.style.justifyContent = 'center';
 
-                data.forEach(album => {
-                    const card = document.createElement('div');
-                    card.style.width = '250px';
-                    card.style.background = '#f9f9f9';
-                    card.style.padding = '15px';
-                    card.style.borderRadius = '10px';
-                    card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-                    card.style.textAlign = 'center';
+    <!--JavaScript do menu-->
+    <script> 
+        const toggleButton = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu-itens');
 
-                    card.innerHTML = `
-          <img src="${album.imagem.url}" alt="${album.album}" style="width:100%; height:auto; border-radius:6px;">
-          <h3>${album.album}</h3>
-        `;
-
-                    conteudo.appendChild(card);
-                });
-            })
-            .catch(erro => console.error('Erro ao carregar catálogo:', erro));
-
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
     </script>
-    <script>
-        fetch('frontend-site/Assets/produtos_teste.json')
-            .then(res => res.json())
-            .then(data => {
-                const top3 = data
-                    .sort((a, b) => b.Nota - a.Nota)
-                    .slice(0, 3);
-
-                const expositor = document.querySelector('.Expositor_discos');
-
-                top3.forEach((album, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'card-disco';
-
-                    const tamanho = index === 1 ? '300px' : '200px';
-
-                    card.innerHTML = `
-                    <img src="${album.imagem.url}" alt="${album.album}" style="width: ${tamanho};">`;
-                    expositor.appendChild(card);
-                });
-            })
-            .catch(erro => {
-                console.error('Erro ao carregar os álbuns:', erro);
-            });
-    </script>
-
-
 
 
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]"
@@ -134,7 +89,7 @@
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </footer>
 
-    f
+    
 
 </body>
 
