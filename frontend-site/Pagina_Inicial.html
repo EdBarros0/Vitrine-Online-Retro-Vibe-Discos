@@ -31,21 +31,26 @@
     </header>
 
     <section class="subheader">
-        <button id="menu-toggle">☰ Menu</button>
-        <div id="menu-itens">
-            <p class="genre-button">Gênero</p>
-            <p class="genre-button">Gênero</p>
-            <p class="genre-button">Gênero</p>
-            <p class="genre-button">Gênero</p>
-            <p class="genre-button">Gênero</p>
-            <p class="genre-button">Gênero</p>
-        </div>
-    </section>
-
-
-    <div class="Expositor_discos">
-        <!--Sub-subheader vermelha, onde ficam os discos com maiores notas-->
+    <button id="menu-toggle">☰ Menu</button>
+    <div id="menu-generos"> <!-- Mudei de ul para div para ficar consistente -->
+        <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
+        <!-- Adicione mais botões conforme necessário -->
     </div>
+</section>
+<div class="conteudo">
+        
+      <div id="Expositor" class="Expositor">
+        <!--Aqui aparecem os discos-->
+    </div>
+    <h2>Top 20 - Discos mais Bem Avaliados</h2>
+    <div class="carousel">
+        <button id="prev"><</button>
+        <div id="carousel-inner" class="carousel-inner">
+            <!-- Os discos serão injetados pelo JavaScript -->
+        </div>
+        <button id="next">></button>
+    </div>
+
     <div class="Container-Sobre-Nos">
         <div class="button-Sobre-Nos">
             <p class="Texto-Sobre-Nos">
@@ -54,19 +59,97 @@
         </div>
     </div>
 
-    <div class="conteudo">
-        <!--Aqui aparecem os discos-->
+</div>
 
-    </div>
+
 
 
     <!--JavaScript do menu-->
     <script> 
         const toggleButton = document.getElementById('menu-toggle');
-        const menu = document.getElementById('menu-itens');
+        const menu = document.getElementById('menu-generos'); // Mude para lista-generos
 
         toggleButton.addEventListener('click', () => {
             menu.classList.toggle('show');
+        });
+    </script>
+    <!--JavaScript do Expositor-->
+    <script>
+        async function exibirSugestaoAleatoria() {
+            try {
+                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+                const json = await resposta.json();
+                const albuns = json.data;
+
+                // pega um album aleatório
+                const album = albuns[Math.floor(Math.random() * albuns.length)];
+
+                const nome = album.album || 'Sem nome';
+                const urlImagem = album.Capa && album.Capa.length > 0 ? album.Capa[0].url : '';
+    
+                document.querySelector("#Expositor").innerHTML = `
+                    <img src="${urlImagem}" alt="${nome}">
+                    <h3>${nome}</h3>`;
+            } catch (erro) {
+                console.error('Erro ao exibir sugestão!', erro);
+            }
+        }
+    
+        // exibe uma nova sugestão a cada 10 segundos
+        exibirSugestaoAleatoria();
+        setInterval(exibirSugestaoAleatoria, 10000);
+    </script>
+    <!--JavaScript do Carrousel-->
+    <script>
+    let scrollPosition = 0;
+
+    async function exibirCarouselTop20() {
+        try {
+            const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+            const json = await resposta.json();
+            const albuns = json.data;
+
+            // Filtra e pega o Top 20
+            const top20 = albuns
+                .filter(item => item.Nota && !isNaN(item.Nota))
+                .sort((a, b) => b.Nota - a.Nota)
+                .slice(0, 20);
+  
+            const container = document.querySelector("#carousel-inner");
+
+            container.innerHTML = '';
+            top20.forEach(album => {
+                const nome = album.album || 'Sem nome';
+                const urlImagem = album.Capa && album.Capa.length > 0 ? album.Capa[0].url : '';
+                
+                container.innerHTML += `
+                    <div class="disco-item">
+                        <img src="${urlImagem}" alt="${nome}">
+                        <h3>${nome}</h3>
+                    </div>`;
+            });
+
+        } catch (erro) {
+            console.error('Erro ao exibir Top 20!', erro);
+        }
+    }
+  
+    exibirCarouselTop20();
+
+        document.querySelector("#next").addEventListener("click", () => {
+            const container = document.querySelector("#carousel-inner");
+            scrollPosition += container.clientWidth / 5;
+            if (scrollPosition >= container.scrollWidth - container.clientWidth) {
+                scrollPosition = container.scrollWidth - container.clientWidth;
+            }
+            container.scrollTo({ left: scrollPosition, behavior:'smooth'})
+        });
+
+        document.querySelector("#prev").addEventListener("click", () => {
+            const container = document.querySelector("#carousel-inner");
+            scrollPosition -= container.clientWidth / 5;
+            if (scrollPosition < 0) scrollPosition = 0;
+            container.scrollTo({ left: scrollPosition, behavior:'smooth'})
         });
     </script>
 
@@ -86,7 +169,8 @@
         <iframe class="Mapa_footer"
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7351.902618448415!2d-42.016216!3d-22.878257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9704b6ffdec34b%3A0xfc0112f2ddb5a615!2sAv.%20Nossa%20Sra.%20da%20Assun%C3%A7%C3%A3o%2C%20781%20-%20S%C3%A3o%20Bento%2C%20Cabo%20Frio%20-%20RJ%2C%2028906-200!5e0!3m2!1spt-BR!2sbr!4v1749168036863!5m2!1spt-BR!2sbr"
             width="30%" height="90%" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
     </footer>
 
     
