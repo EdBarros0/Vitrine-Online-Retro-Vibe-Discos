@@ -48,6 +48,8 @@ body{
 
 #lupa{
     height: 75%;
+    margin: 5px;
+    cursor: pointer;
 }
 
 #input-pesquisa{
@@ -82,6 +84,7 @@ body{
     border-radius: 15px;
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
     padding-left: 7px;
 }
 
@@ -255,4 +258,27 @@ body{
   color: #fff;
   width: 6vh;
   height: 6vh;
+}
+
+.album {
+    cursor: pointer;
+}
+
+/* Estilo da página do produto */
+
+#imagem-produto {
+    width: 400px;
+}
+
+#nome-disco {
+    font-size: 30px;
+}
+
+.texto-produto {
+    font-size: 23px;
+    padding: 5px;
+}
+
+#informacoes-disco {
+    line-height: 10px;
 }
