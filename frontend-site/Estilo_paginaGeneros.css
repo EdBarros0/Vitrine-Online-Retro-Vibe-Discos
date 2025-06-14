@@ -46,15 +46,16 @@ body{
     color: white;
 }
 
-#lupa{
-    height: 75%;
-    margin: 5px;
-    cursor: pointer;
+.lupa{
+    height: 20px;
 }
 
-#input-pesquisa{
-    width: calc(100% - 40px);
-    border: 0;
+.search-bar{
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  width: 150px;
 }
 
 .subheader{
@@ -77,15 +78,14 @@ body{
     height: auto; /* mantém proporção */
 }
 
-#barra-pesquisa{
-    height: 30%;
-    width: 270px;
-    background-color: white;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    padding-left: 7px;
+.search{
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  height: 40px;
 }
 
 /* Título do gênero */
@@ -281,4 +281,15 @@ body{
 
 #informacoes-disco {
     line-height: 10px;
+}
+
+/* Estilo página de pesquisa */
+
+#resultado {
+    width: 100%;
+}
+
+#texto-resultado {
+    margin-left: 10px;
+    font-size: 20px;
 }
