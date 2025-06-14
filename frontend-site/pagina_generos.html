@@ -28,14 +28,16 @@
         </div>
     </header>
     <section class="subheader">
+        <!-- Lista de gêneros do subheader -->
         <ul id="lista-generos">
-            <!-- Lista de gêneros do subheader -->
+             <!-- O botão só funciona se colocar o nome do gênero no innerHTML -->
+             <button onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
         </ul>
     </section>
 
     <div class="titulo-genero">
         <div id="container-genero-titulo">
-            <p id="texto-genero">Gênero</p>
+            <p id="texto-genero"></p>
         </div>
     </div>
     
@@ -57,75 +59,67 @@
     </footer>
 
     <div id="fundo-preto"></div>
-
-    <div id="menu-suspenso">
-        <!-- Nome do disco-->
-        <p id="menu-suspenso-nomeDisc">Nome do disco</p>
-        <!-- Div que contém a imagem e a descrição-->
-        <div id="menu-suspenso-container-imgdesc">
-            <img id="menu-suspenso-imgProduto" src="" alt="Imagem de um disco">
-            <div id="menu-suspenso-txt">
-                <p>Artista: </p>
-                <p>Álbum: </p>
-                <p>Lançamento: </p>
-                <p>Faixas: </p>
-                <p>Duração: </p>
-                <p>Nota: </p>
-            </div>
-        </div>
-    </div>
     
     <script>
-        async function carregarAlbuns() {
+
+        function direcionarPaginaGenero(nomeGenero){
+            window.location.href = `/frontend-site/pagina_generos.html?genero=${nomeGenero}`;
+        }
+
+        let genero_pagina = "";
+        async function carregarGenero() {
             try {
                 const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
                 const json = await resposta.json();
                 const albuns = json.data;
 
-                console.log('Álbuns recebidos:', albuns); // DEBUG
-
                 const container = document.querySelector(".conteudo");
                 container.innerHTML = '';
 
+                const nomeGenero = new URLSearchParams(window.location.search);
+                document.querySelector('#texto-genero').innerHTML = nomeGenero.get('genero')[0].toUpperCase() + nomeGenero.get('genero').slice(1).toLowerCase();
+
                 albuns.forEach(item => {
-                const album = item.album || 'Sem nome';
-                const artista = item.Artista || 'Desconhecido';
-                const lancamento = item.Lancamento || 'Ano desconhecido';
-                const faixas = item.Faixas || 0;
-                const duracao = item.Duracao || 0;
-                const nota = item.Nota || 'Sem nota';
-                const genero = item.Genero || 'Sem gênero';
+                    if (item.Genero.toLowerCase() == nomeGenero.get('genero').toLowerCase()) {
+                        const album = item.album || 'Sem nome';
+                        const artista = item.Artista || 'Desconhecido';
+                        const lancamento = item.Lancamento || 'Ano desconhecido';
+                        const faixas = item.Faixas || 0;
+                        const duracao = item.Duracao || 0;
+                        const nota = item.Nota || 'Sem nota';
+                        const genero = item.Genero || 'Sem gênero';
 
-                // Capa
-                let urlImagem = '';
-                if (Array.isArray(item.Capa) && item.Capa.length > 0 && item.Capa[0].url) {
-                    urlImagem = item.Capa[0].url;
-                }
+                        // Capa
+                        let urlImagem = '';
+                        if (Array.isArray(item.Capa) && item.Capa.length > 0 && item.Capa[0].url) {
+                            urlImagem = item.Capa[0].url;
+                        }
 
-                const html = `
-                    <div class="album">
-                    <h2>${album}</h2>
-                    <p><strong>Artista:</strong> ${artista}</p>
-                    ${urlImagem ? `<img src="${urlImagem}" alt="Capa do álbum ${album}">` : '<p>Sem imagem</p>'}
-                    <p><strong>Ano:</strong> ${lancamento}</p>
-                    <p><strong>Faixas:</strong> ${faixas}</p>
-                    <p><strong>Duração:</strong> ${duracao} min</p>
-                    <p><strong>Nota:</strong> ${nota}</p>
-                    <p><strong>Gênero:</strong> ${genero}</p>
-                    </div>
-                `;
+                        const html = `
+                            <div class="album">
+                            <h2>${album}</h2>
+                            <p><strong>Artista:</strong> ${artista}</p>
+                            ${urlImagem ? `<img src="${urlImagem}" alt="Capa do álbum ${album}">` : '<p>Sem imagem</p>'}
+                            <p><strong>Ano:</strong> ${lancamento}</p>
+                            <p><strong>Faixas:</strong> ${faixas}</p>
+                            <p><strong>Duração:</strong> ${duracao} min</p>
+                            <p><strong>Nota:</strong> ${nota}</p>
+                            <p><strong>Gênero:</strong> ${genero}</p>
+                            </div>
+                        `;
 
-                container.innerHTML += html;
+                        container.innerHTML += html;
 
-                // Permite o álbum ser clicado e direciona o usuário para a página do produto
-                document.querySelector('.album').addEventListener('click', () => {
-                    let dadosProduto = new URLSearchParams(item).toString();
+                        // Permite o álbum ser clicado e direciona o usuário para a página do produto
+                        document.querySelector('.album').addEventListener('click', () => {
+                            let dadosProduto = new URLSearchParams(item).toString();
 
-                    dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
-                    dadosProduto[0] += item.Capa[0].url;
+                            dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+                            dadosProduto[0] += item.Capa[0].url;
 
-                    window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
-                });
+                            window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
+                        });
+                    }
 
                 });
 
@@ -134,115 +128,8 @@
             }
             }
 
-        carregarAlbuns();
+        carregarGenero();  
 
-        
-
-
-        // let page_genre = "Eletronica";
-        // let dados = [];
-        // document.getElementById('texto-genero').textContent = page_genre;
-
-        // let lista_generos = document.getElementById('lista-generos');
-
-        // // Muda o gênero da página
-        // function mudar_genero(nomeGenero){
-        //     const conteudo = document.querySelector('.conteudo');
-        //     conteudo.innerHTML = '';
-        //     document.getElementById('texto-genero').textContent = nomeGenero;
-
-        //     dados.forEach(album => {
-        //         if (album.Genero == nomeGenero) {
-        //             const card = document.createElement('div');
-        //             card.className = "produto";
-        //             card.style.cursor = 'pointer'
-        //             card.style.maxWidth = '250px';
-        //             card.style.background = '#f9f9f9';
-        //             card.style.padding = '15px';
-        //             card.style.borderRadius = '10px';
-        //             card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-        //             card.style.textAlign = 'center';
-
-        //             card.innerHTML = `
-        //             <img src="${album.imagem.url}" alt="${album.album}" style="width:100%; height:auto; border-radius:6px;">
-        //             <h3>${album.album}</h3>
-        //             `;
-
-        //             // Adiciona a interação do álbum com o menu-suspenso
-        //             card.addEventListener('click', () => {
-        //                 document.getElementById('fundo-preto').style.visibility = "visible";
-        //                 document.getElementById('menu-suspenso').style.visibility = "visible";
-        //                 document.getElementById('menu-suspenso-nomeDisc').textContent = album.album;
-        //                 document.getElementById('menu-suspenso-imgProduto').src = album.imagem.url;
-        //                 const descricao = document.getElementById("menu-suspenso-txt");
-
-        //                 // Adiciona a descrição
-        //                 let i = 0; 
-        //                 for (const paragrafo of descricao.children){
-        //                     paragrafo.textContent += Object.values(album)[i];
-        //                     paragrafo.style.fontSize = "20px";
-        //                     i++;
-        //                 }
-        //             });
-
-        //             // Quando clica fora da tela volta pros discos
-        //             document.getElementById('fundo-preto').addEventListener('click', () => {
-        //                 document.getElementById('menu-suspenso').style.visibility = "hidden";
-        //                 document.getElementById('fundo-preto').style.visibility = "hidden";
-        //                 const descricao = document.getElementById("menu-suspenso-txt");
-        //                 let template = ["Artista: ", "Álbum: ", "Lançamento: ", "Faixas: ", "Duração: ", "Nota: "]
-                        
-        //                 // Volta a descrição pro normal
-        //                 let i = 0; 
-        //                 for (const paragrafo of descricao.children){
-        //                     paragrafo.textContent = template[i]
-        //                     paragrafo.style.fontSize = "20px";
-        //                     i++;
-        //                 }
-
-        //             });
-
-        //             conteudo.appendChild(card);
-        //         }
-        //     });
-        // }
-
-        // fetch('/frontend-site/Assets/produtos_teste.json')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         dados = data;
-                
-        //         // Adiciona os gêneros no subheader baseado nos gêneros dos álbuns
-        //         let nome_generos = [];
-        //         data.forEach(disco => {
-        //             nome_generos.push(disco.Genero);
-        //         });
-        //         nome_generos = nome_generos.filter(function(nome, i) { // Tira as repetições
-        //             return nome_generos.indexOf(nome) === i;
-        //         });
-
-        //         nome_generos.forEach(disco => {
-        //             const item = document.createElement('li');
-        //             const texto_item = document.createElement('p');
-        //             texto_item.textContent = disco;
-        //             texto_item.className = 'genre-button'
-        //             item.appendChild(texto_item);
-        //             lista_generos.appendChild(item);
-        //         });
-                    
-
-        //         // Adiciona o evento de click nos gêneros
-        //         for (const child of lista_generos.children){
-        //             child.addEventListener('click', () => {
-        //                 page_genre = child.textContent;
-        //                 mudar_genero(page_genre);
-        //             })
-        //         }
-
-        //         mudar_genero(page_genre);
-        //     })
-        //     .catch(erro => console.error('Erro ao carregar catálogo:', erro));
-            
     </script>
 </body>
 </html>

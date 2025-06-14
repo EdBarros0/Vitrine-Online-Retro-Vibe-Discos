@@ -98,7 +98,7 @@ body{
 }
 
 .titulo-genero{
-    background-image: url(Assets/shape-background2.png);
+    background-color: #E05338;
     width: 100vw;
     min-height: 70px;
     display: flex;
