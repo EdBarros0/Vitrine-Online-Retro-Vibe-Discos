@@ -52,6 +52,10 @@
         <iframe class="Mapa_footer" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7351.902618448415!2d-42.016216!3d-22.878257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9704b6ffdec34b%3A0xfc0112f2ddb5a615!2sAv.%20Nossa%20Sra.%20da%20Assun%C3%A7%C3%A3o%2C%20781%20-%20S%C3%A3o%20Bento%2C%20Cabo%20Frio%20-%20RJ%2C%2028906-200!5e0!3m2!1spt-BR!2sbr!4v1749168036863!5m2!1spt-BR!2sbr" width="30%" height="90%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </footer>
     <script>
+        // Voltar pra página inicial pela logo
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.location.href = "/frontend-site/Pagina_Inicial.html";
+        });
 
         const input = document.getElementById('search');
         input.addEventListener('keydown', function(event) {
