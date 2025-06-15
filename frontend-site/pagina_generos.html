@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gêneros</title>
+    <title>Álbuns</title>
     <link rel="stylesheet" href="Estilo_paginaGeneros.css">
     
     <!-- Fonte -->
@@ -21,18 +21,20 @@
         </div>
 
         <div class="header2">
-            <div id="barra-pesquisa">
-               <img id="lupa" src="/frontend-site/Assets/lupa.png" alt="lupa">
-               <input id="input-pesquisa">
+            <div class="search">
+                <div class="lupa">
+                    <img style="height: 75%;" src="Assets/lupa.png" alt="lupa">
+                </div>
+                <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
             </div>
         </div>
     </header>
     <section class="subheader">
         <!-- Lista de gêneros do subheader -->
-        <ul id="lista-generos">
+        <div id="lista-generos">
              <!-- O botão só funciona se colocar o nome do gênero no innerHTML -->
-             <button onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
-        </ul>
+             <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
+        </div>
     </section>
 
     <div class="titulo-genero">
@@ -60,14 +62,36 @@
 
     <div id="fundo-preto"></div>
     
+    <script> 
+        const toggleButton = document.getElementById('menu-toggle');
+        const menu = document.getElementById('lista-generos');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+
     <script>
 
-        function direcionarPaginaGenero(nomeGenero){
-            window.location.href = `/frontend-site/pagina_generos.html?genero=${nomeGenero}`;
+        // Pega a pesquisa e faz a busca
+        const input = document.getElementById('search');
+        input.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                busca(input.value);
+            }
+        });
+
+        // Função de busca
+        function busca(pesquisa){
+            window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
         }
 
-        let genero_pagina = "";
-        async function carregarGenero() {
+        // Função que direciona para o gênero
+        function direcionarPaginaGenero(nomeGenero){
+            window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
+        }
+
+        async function carregarAlbuns() {
             try {
                 const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
                 const json = await resposta.json();
@@ -76,11 +100,26 @@
                 const container = document.querySelector(".conteudo");
                 container.innerHTML = '';
 
-                const nomeGenero = new URLSearchParams(window.location.search);
-                document.querySelector('#texto-genero').innerHTML = nomeGenero.get('genero')[0].toUpperCase() + nomeGenero.get('genero').slice(1).toLowerCase();
+                const parametrosURL = new URLSearchParams(window.location.search);
+
+                let tipoPagina = '';
+                if (parametrosURL.get('genero') != "null") {
+                    document.querySelector('#texto-genero').innerHTML = parametrosURL.get('genero')[0].toUpperCase() + parametrosURL.get('genero').slice(1).toLowerCase();
+                }
+                
+                if (parametrosURL.get('busca') != "null") {
+                    const html = `
+                        <div id="resultado">
+                            <p id="texto-resultado"><strong>Resultados para "${parametrosURL.get('busca')}":<strong></p>
+                        </div>
+
+                    `;
+
+                    container.innerHTML += html;
+                }
 
                 albuns.forEach(item => {
-                    if (item.Genero.toLowerCase() == nomeGenero.get('genero').toLowerCase()) {
+                    if (item.Genero.toLowerCase() == parametrosURL.get('genero').toLowerCase() || item.album.toLowerCase().includes(parametrosURL.get('busca').toLowerCase())) {
                         const album = item.album || 'Sem nome';
                         const artista = item.Artista || 'Desconhecido';
                         const lancamento = item.Lancamento || 'Ano desconhecido';
@@ -128,7 +167,7 @@
             }
             }
 
-        carregarGenero();  
+        carregarAlbuns();  
 
     </script>
 </body>
