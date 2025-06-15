@@ -251,7 +251,7 @@ body{
 
 .botao-email {
   position: fixed;
-  bottom: 160px;
+  bottom: 20px;
   right: 20px;
   width: 10vh;               /* largura e altura iguais = redondo */
   height: 10vh;
