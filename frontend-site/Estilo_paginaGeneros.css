@@ -92,6 +92,7 @@ body{
     width: 150px; /* largura padrão */
     max-width: 100%; /* nunca exceder o tamanho do container */
     height: auto; /* mantém proporção */
+    cursor: pointer; 
 }
 
 .search{
