@@ -72,6 +72,22 @@ body{
     justify-content: center;
 }
 
+.botao-genero {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'DM Sans', sans-serif;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.2s ease;
+}
+
+.botao-genero:hover {
+    color: #ff7649;
+    text-decoration: underline;
+}
+
 .logo{
     width: 150px; /* largura padrão */
     max-width: 100%; /* nunca exceder o tamanho do container */
@@ -149,6 +165,9 @@ body{
     }
     #texto-titulo{
         font-size: 10px;
+    }
+    .footer {
+        flex-direction: column;
     }
 }
 

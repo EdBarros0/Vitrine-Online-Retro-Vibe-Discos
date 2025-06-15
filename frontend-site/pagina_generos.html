@@ -31,10 +31,10 @@
     </header>
     <section class="subheader">
         <!-- Lista de gêneros do subheader -->
-        <ul id="lista-generos">
+        <div id="lista-generos">
              <!-- O botão só funciona se colocar o nome do gênero no innerHTML -->
-             <button onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
-        </ul>
+             <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
+        </div>
     </section>
 
     <div class="titulo-genero">
@@ -62,8 +62,18 @@
 
     <div id="fundo-preto"></div>
     
+    <script> 
+        const toggleButton = document.getElementById('menu-toggle');
+        const menu = document.getElementById('lista-generos');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+
     <script>
 
+        // Pega a pesquisa e faz a busca
         const input = document.getElementById('search');
         input.addEventListener('keydown', function(event) {
             if (event.key === "Enter") {
@@ -71,10 +81,12 @@
             }
         });
 
+        // Função de busca
         function busca(pesquisa){
             window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
         }
 
+        // Função que direciona para o gênero
         function direcionarPaginaGenero(nomeGenero){
             window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
         }
