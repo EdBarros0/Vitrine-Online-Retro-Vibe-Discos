@@ -56,7 +56,8 @@ body {
     flex-grow: 1;
 }
 
-/* Barra de Pesquisa */
+/* ===== BARRA DE PESQUISA ===== */
+
 .barra-pesquisa {
     height: 40px;
     width: 270px;
@@ -68,7 +69,15 @@ body {
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
-
+.search{
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  height: 40px;
+}
 #lupa {
     height: 75%;
     margin-right: 10px;
@@ -132,7 +141,18 @@ body {
     max-width: 100%; 
     height: auto;
 }
+/* ===== BARRA DE BUSCA ===== */
+.lupa{
+    height: 20px;
+}
 
+.search-bar{
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  width: 150px;
+}
 /* ===== SOBRE NÓS ===== */
 .container-Sobre-Nos, .button-Sobre-Nos, .Texto-Sobre-Nos {
     box-sizing: border-box;

@@ -23,9 +23,11 @@
         </div>
 
         <div class="header2">
-            <div class="barra-pesquisa">
-                <img id="lupa" src="frontend-site/Assets/lupa.png" alt="lupa">
-                <input id="input-pesquisa">
+            <div class="search">
+                <div class="lupa">
+                    <img style="height: 75%;" src="frontend-site/Assets/lupa.png" alt="lupa">
+                </div>
+                <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
             </div>
         </div>
     </header>
@@ -72,6 +74,26 @@
         toggleButton.addEventListener('click', () => {
             menu.classList.toggle('show');
         });
+        
+        // Função que direciona para o gênero
+        function direcionarPaginaGenero(nomeGenero){
+            window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
+        }
+    </script>
+    <!--funções de busca-->
+    <script>
+        // Pega a pesquisa e faz a busca
+        const input = document.getElementById('search');
+        input.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                busca(input.value);
+            }
+        });
+
+        // Função de busca
+        function busca(pesquisa){
+            window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
+        }
     </script>
     <!--JavaScript do Expositor-->
     <script>
