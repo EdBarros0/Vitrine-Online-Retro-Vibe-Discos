@@ -96,6 +96,13 @@
     }
 
     window.onload = carregarGeneros;
+    function direcionarPaginaGenero(nomeGenero){
+    window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
+
+    // Agora ele consegue redirecionar pra pagina de gênero pelo nome correto
+}
+
+
 </script>
 
     <!--funções de busca-->
@@ -110,7 +117,7 @@
 
         // Função de busca
         function busca(pesquisa){
-            window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
+            window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
         }
     </script>
     <!--JavaScript do Expositor-->
@@ -181,7 +188,7 @@
                     dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
                     dadosProduto[0] += albuns[indice].Capa[0].url;
 
-                    window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
+                    window.location.href = `pagina_produto.html?disco=${dadosProduto[0]}`;
                 });
             });
 
@@ -212,7 +219,7 @@
 
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]"
         target="_blank" class="botao-email" title="Envie-nos um e-mail">
-        <img src="frontend-site/Assets/envelope.png" alt="Envelope">
+        <img src="Assets/envelope.png" alt="Envelope">
     </a>
 
     <footer class="footer">
