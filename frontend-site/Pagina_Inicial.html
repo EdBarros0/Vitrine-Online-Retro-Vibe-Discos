@@ -149,6 +149,16 @@
                         <img src="${urlImagem}" alt="${nome}">
                         <h3>${nome}</h3>
                     </div>`;
+                
+                // Permite o álbum ser clicado e direciona o usuário para a página do produto
+                document.querySelector('.disco-item').addEventListener('click', () => {
+                    let dadosProduto = new URLSearchParams(album).toString();
+
+                    dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+                    dadosProduto[0] += album.Capa[0].url;
+
+                    window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
+                });
             });
 
         } catch (erro) {

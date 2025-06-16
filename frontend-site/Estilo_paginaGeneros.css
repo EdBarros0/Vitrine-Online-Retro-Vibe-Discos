@@ -176,56 +176,6 @@ body{
     width: 100%;
 }
 
-/* Menu suspenso */
-#fundo-preto{
-    visibility: hidden;
-    position: fixed; 
-    width: 100vw; 
-    height: 100vh; 
-    background-color: black; 
-    opacity: 0.8;
-}
-
-#menu-suspenso{
-    visibility: hidden;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background-color: white;
-    position: fixed;
-    left: 25%;
-    top: 25%;
-    border-radius: 20px;
-    width: 650px;
-    height: 400px;
-    z-index: 1;
-}
-
-#menu-suspenso-nomeDisc{
-    font-size: 30px;
-}
-
-#menu-suspenso-container-imgdesc{
-    width: calc(100% - 20px);
-    display: flex;
-    justify-content: space-around;
-    flex: 0.8; /* Faz a imagem e a descrição ocuparem a maior parte do espaço no menu*/
-}
-
-#menu-suspenso-imgProduto{
-    height: 250px;
-    border-radius: 20px;
-}
-
-#menu-suspenso-txt{
-    flex: 1; 
-    flex-wrap: wrap;
-    padding-left: 30px;
-    overflow-wrap: anywhere;
-}
-
 .descricao-disco{
     font-size: 20px;
 }
