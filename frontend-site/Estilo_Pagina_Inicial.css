@@ -24,78 +24,76 @@ body {
 }
 
 /* ===== HEADER ===== */
-.header {
-    background: #E05338;
-    width: 100%;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.top-bar {
+  background-color: #e64c3c;
+  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+
 }
 
-#texto-titulo {
-    font-size: clamp(24px, 5vw, 40px);
-    color: white;
-    margin: 0;
-}
-
-.header1 {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.header2 {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 30px;
-    flex-grow: 1;
-}
-
-/* ===== BARRA DE PESQUISA ===== */
-
-.barra-pesquisa {
-    height: 40px;
-    width: 270px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    padding-left: 7px;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-.search{
-  background-color: #fff;
-  border-radius: 30px;
+.marca {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  height: 40px;
-}
-#lupa {
-    height: 75%;
-    margin-right: 10px;
 }
 
-#input-pesquisa {
-    width: calc(100% - 40px);
-    border: none;
-    outline: none;
-    font-size: 16px;
+.logo {
+  align-self: center;
+  width: 20vw;
+  max-width: 8rem;
+  margin: 5px;
+  object-fit: contain;
+  cursor: pointer;
 }
+
+.logo:hover {
+  transform: scale(1.01);
+}
+
+.search {
+  background-color: #fff;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  height: 2rem;
+  width: 20rem;
+}
+
+.search button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: transform 0,2 ease;
+}
+
+.search button:hover{
+  transform: scale(1.08);
+}
+
+
+.search-bar {
+  font-size: 100%;
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  width: 20rem;
+}
+
 
 /* ===== SUBHEADER E MENU ===== */
 .subheader {
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: #000000;
+    background-color: #303030;
     padding: 10px;
     position: relative;
     align-items: center;
@@ -134,26 +132,7 @@ body {
     color: #ff7649;
     text-decoration: underline;
 }
-
-/* ===== LOGO ===== */
-.logo {
-    width: 150px; 
-    max-width: 100%; 
-    height: auto;
-}
-/* ===== BARRA DE BUSCA ===== */
-.lupa{
-    height: 20px;
-}
-
-.search-bar{
-  background: transparent;
-  padding: 6px 12px;
-  border-radius: 20px;
-  border: none;
-  width: 150px;
-}
-/* ===== SOBRE NÓS ===== */
+/*=== SOBRE NÓS ===== */
 .container-Sobre-Nos, .button-Sobre-Nos, .Texto-Sobre-Nos {
     box-sizing: border-box;
 }
@@ -227,7 +206,7 @@ body {
 }
 
 .informacoes-footer p{
-  margin: 0;
+margin: 0;
   padding: 5px;
 }
 
