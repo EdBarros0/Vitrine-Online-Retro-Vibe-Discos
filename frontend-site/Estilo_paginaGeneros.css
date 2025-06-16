@@ -4,6 +4,7 @@
   text-decoration: none;
   margin: 0;
   padding: 0;
+  font-family: "DM Sans", sans-serif;
 }
 
 html, body {
@@ -181,22 +182,62 @@ body{
 }
 
 /* Rodapé */
-.footer{
-    background:#000000;
-    width:100%;
-    min-height:120px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #303030;
 }
 
-#informacoes-footer{
-    color: white;
+.conteudo-footer{
+  background-color: transparent;
+  color: #fff;
+  display: flex;
+
+  align-items: right;
+  padding: 20px 8rem 20px 10px;
 }
 
-#mapa{
-    height: 90px;
+
+.informacoes-footer{
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  max-width: 30vw;
+  margin-right: 5rem;
+}
+
+.informacoes-footer img{
+  width: 10vh;
+}
+
+.informacoes-footer p{
+  padding: 5px;
+}
+
+.ligacoes{
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ligacoes h1 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.ligacoes a {
+  color: #fff;
+  padding: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ligacoes a:hover {
+  color: #e64c3c;
+  text-decoration: underline;
 }
 
 .botao-email {
