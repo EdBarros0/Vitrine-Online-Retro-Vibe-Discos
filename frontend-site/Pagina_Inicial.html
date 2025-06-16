@@ -233,7 +233,16 @@
             container.scrollTo({ left: scrollPosition, behavior:'smooth'})
         });
     </script>
+    <!--JavaScript responsividade do Menu -->
 
+    <script> 
+        const toggleButton = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu-generos'); // Mude para lista-generos
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
 
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]"
         target="_blank" class="botao-email" title="Envie-nos um e-mail">
