@@ -192,6 +192,19 @@
                 });
             });
 
+            const expositor = document.querySelector(".Expositor");
+            expositor.addEventListener('click', () => {
+                const indice = albuns.findIndex(function (disco) {
+                    return disco.album.toLowerCase() == expositor.querySelector('h3').innerHTML.toLowerCase();
+                });
+                let dadosProduto = new URLSearchParams(albuns[indice]).toString();
+            
+                dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+                dadosProduto[0] += albuns[indice].Capa[0].url;
+
+                window.location.href = `pagina_produto.html?disco=${dadosProduto[0]}`;
+            });
+
         } catch (erro) {
             console.error('Erro ao exibir Top 20!', erro);
         }

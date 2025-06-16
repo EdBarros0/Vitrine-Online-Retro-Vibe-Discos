@@ -307,6 +307,7 @@ margin: 0;
     margin-bottom: 20px;
     border-radius: 0 0 20px 0px;
     position: relative;
+    cursor: pointer;
 }
 
 .Expositor img {
