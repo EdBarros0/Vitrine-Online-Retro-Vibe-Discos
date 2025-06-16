@@ -1,182 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Álbuns</title>
-    <link rel="stylesheet" href="Estilo_paginaGeneros.css">
+        <title>Álbuns</title>
+        <link rel="stylesheet" href="Estilo_paginaGeneros.css">
     
-    <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="header">
+        <!-- Fonte -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    </head>
+    <body>
         <!--cabeçalho do site-->
-       <div class="top-bar">
-      <div class="marca">
-        <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
-      </div>
-      <div class="search">
-          <button type="submit", title="Buscar">
-            <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
-          </button>
-        <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
-      </div>
-    </div>
-    </header>
-    <section class="subheader">
-        <!-- Lista de gêneros do subheader -->
-        <div id="lista-generos">
-             <!-- O botão só funciona se colocar o nome do gênero no innerHTML -->
-             <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
-        </div>
-    </section>
+        <header class="header">
+            <div class="top-bar">
+                <div class="marca">
+                    <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
+                </div>
+                <div class="search">
+                    <button type="submit", title="Buscar">
+                        <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
+                    </button>
+                    <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
+                </div>
+            </div>
+        </header>
+        <section class="subheader">
+            <!-- Lista de gêneros do subheader -->
+            <div id="lista-generos">
+                <!-- O botão só funciona se colocar o nome do gênero no innerHTML -->
+                <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
+            </div>
+        </section>
 
-    <div class="titulo-genero">
-        <div id="container-genero-titulo">
-            <p id="texto-genero"></p>
+        <div class="titulo-genero">
+            <div id="container-genero-titulo">
+                <p id="texto-genero"></p>
+            </div>
         </div>
-    </div>
     
-    <div class="conteudo">
-    </div>
+        <div class="conteudo"></div>
 
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
-    <img src="/frontend-site/Assets/envelope.png" alt="Envelope">
-    </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
+            <img src="/frontend-site/Assets/envelope.png" alt="Envelope">
+        </a>
 
-    <footer class="footer">
-        <div class="conteudo-footer">
-          <div class="informacoes-footer">
-            <img src="Assets/logo.png" alt="Logo Retro Vibes Disco">
-            <p>Retro Vibes Disco</p>
-            <p>CNPJ: 81.672.563/0001-28</p>
-            <p>Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ</p>
-          </div>
-          <div class="ligacoes">
-            <h1>Menu</h1>
-            <a href="Pagina_Inicial.html">Início</a>
-            <a href="pagina_informativa.html">Quem Somos</a>
-          </div>
-        </div>
-  </footer>
+        <footer class="footer">
+            <div class="conteudo-footer">
+                <div class="informacoes-footer">
+                    <img src="Assets/logo.png" alt="Logo Retro Vibes Disco">
+                    <p>Retro Vibes Disco</p>
+                    <p>CNPJ: 81.672.563/0001-28</p>
+                    <p>Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ</p>
+                </div>
+                <div class="ligacoes">
+                    <h1>Menu</h1>
+                    <a href="Pagina_Inicial.html">Início</a>
+                    <a href="pagina_informativa.html">Quem Somos</a>
+                </div>
+            </div>
+        </footer>
 
-    <div id="fundo-preto"></div>
+        <div id="fundo-preto"></div>
     
-    <script> 
-        const toggleButton = document.getElementById('menu-toggle');
-        const menu = document.getElementById('lista-generos');
+        <script> 
+            const toggleButton = document.getElementById('menu-toggle');
+            const menu = document.getElementById('lista-generos');
 
-        toggleButton.addEventListener('click', () => {
-            menu.classList.toggle('show');
-        });
-    </script>
+            toggleButton.addEventListener('click', () => {
+                menu.classList.toggle('show');
+            });
+        </script>
 
-    <script>
-        // Voltar pra página inicial pela logo
-        document.querySelector('.logo').addEventListener('click', () => {
-            window.location.href = "/frontend-site/Pagina_Inicial.html";
-        });
+        <script>
+            // Voltar pra página inicial pela logo
+            document.querySelector('.logo').addEventListener('click', () => {
+                window.location.href = "/frontend-site/Pagina_Inicial.html";
+            });
 
-        // Pega a pesquisa e faz a busca
-        const input = document.getElementById('search');
-        input.addEventListener('keydown', function(event) {
-            if (event.key === "Enter") {
-                busca(input.value);
+            // Pega a pesquisa e faz a busca
+            const input = document.getElementById('search');
+            input.addEventListener('keydown', function(event) {
+                if (event.key === "Enter") {
+                    busca(input.value);
+                }
+            });
+
+            // Função de busca
+            function busca(pesquisa){
+                window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
             }
-        });
 
-        // Função de busca
-        function busca(pesquisa){
-            window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
-        }
+            // Função que direciona para o gênero
+            function direcionarPaginaGenero(nomeGenero){
+                window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
+            }
 
-        // Função que direciona para o gênero
-        function direcionarPaginaGenero(nomeGenero){
-            window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
-        }
+            async function carregarAlbuns() {
+                try {
+                    const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+                    const json = await resposta.json();
+                    const albuns = json.data;
 
-        async function carregarAlbuns() {
-            try {
-                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
-                const json = await resposta.json();
-                const albuns = json.data;
+                    const container = document.querySelector(".conteudo");
+                    container.innerHTML = '';
 
-                const container = document.querySelector(".conteudo");
-                container.innerHTML = '';
+                    const parametrosURL = new URLSearchParams(window.location.search);
 
-                const parametrosURL = new URLSearchParams(window.location.search);
-
-                let tipoPagina = '';
-                if (parametrosURL.get('genero') != "null") {
-                    document.querySelector('#texto-genero').innerHTML = parametrosURL.get('genero')[0].toUpperCase() + parametrosURL.get('genero').slice(1).toLowerCase();
-                }
+                    let tipoPagina = '';
+                    if (parametrosURL.get('genero') != "null") {
+                        document.querySelector('#texto-genero').innerHTML = parametrosURL.get('genero')[0].toUpperCase() + parametrosURL.get('genero').slice(1).toLowerCase();
+                    }
                 
-                if (parametrosURL.get('busca') != "null") {
-                    const html = `
-                        <div id="resultado">
-                            <p id="texto-resultado"><strong>Resultados para "${parametrosURL.get('busca')}":<strong></p>
-                        </div>
-
-                    `;
-
-                    container.innerHTML += html;
-                }
-
-                albuns.forEach(item => {
-                    if (item.Genero.toLowerCase() == parametrosURL.get('genero').toLowerCase() || item.album.toLowerCase().includes(parametrosURL.get('busca').toLowerCase())) {
-                        const album = item.album || 'Sem nome';
-                        const artista = item.Artista || 'Desconhecido';
-                        const lancamento = item.Lancamento || 'Ano desconhecido';
-                        const faixas = item.Faixas || 0;
-                        const duracao = item.Duracao || 0;
-                        const nota = item.Nota || 'Sem nota';
-                        const genero = item.Genero || 'Sem gênero';
-
-                        // Capa
-                        let urlImagem = '';
-                        if (Array.isArray(item.Capa) && item.Capa.length > 0 && item.Capa[0].url) {
-                            urlImagem = item.Capa[0].url;
-                        }
-
+                    if (parametrosURL.get('busca') != "null") {
                         const html = `
-                            <div class="album">
-                            <h2>${album}</h2>
-                            <p><strong>Artista:</strong> ${artista}</p>
-                            ${urlImagem ? `<img src="${urlImagem}" alt="Capa do álbum ${album}">` : '<p>Sem imagem</p>'}
-                            <p><strong>Ano:</strong> ${lancamento}</p>
-                            <p><strong>Faixas:</strong> ${faixas}</p>
-                            <p><strong>Duração:</strong> ${duracao} min</p>
-                            <p><strong>Nota:</strong> ${nota}</p>
-                            <p><strong>Gênero:</strong> ${genero}</p>
+                            <div id="resultado">
+                                <p id="texto-resultado"><strong>Resultados para "${parametrosURL.get('busca')}":<strong></p>
                             </div>
+
                         `;
 
                         container.innerHTML += html;
-
-                        // Permite o álbum ser clicado e direciona o usuário para a página do produto
-                        document.querySelector('.album').addEventListener('click', () => {
-                            let dadosProduto = new URLSearchParams(item).toString();
-
-                            dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
-                            dadosProduto[0] += item.Capa[0].url;
-
-                            window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
-                        });
                     }
 
-                });
+                    albuns.forEach(item => {
+                        if (item.Genero.toLowerCase() == parametrosURL.get('genero').toLowerCase() || item.album.toLowerCase().includes(parametrosURL.get('busca').toLowerCase())) {
+                            const album = item.album || 'Sem nome';
+                            const artista = item.Artista || 'Desconhecido';
+                            const lancamento = item.Lancamento || 'Ano desconhecido';
+                            const faixas = item.Faixas || 0;
+                            const duracao = item.Duracao || 0;
+                            const nota = item.Nota || 'Sem nota';
+                            const genero = item.Genero || 'Sem gênero';
 
-            } catch (erro) {
-                console.error('Erro ao carregar os álbuns:', erro);
-            }
-            }
+                            // Capa
+                            let urlImagem = '';
+                            if (Array.isArray(item.Capa) && item.Capa.length > 0 && item.Capa[0].url) {
+                                urlImagem = item.Capa[0].url;
+                            }
 
-        carregarAlbuns();  
+                            const html = `
+                                <div class="album">
+                                <h2>${album}</h2>
+                                <p><strong>Artista:</strong> ${artista}</p>
+                                ${urlImagem ? `<img src="${urlImagem}" alt="Capa do álbum ${album}">` : '<p>Sem imagem</p>'}
+                                <p><strong>Ano:</strong> ${lancamento}</p>
+                                <p><strong>Faixas:</strong> ${faixas}</p>
+                                <p><strong>Duração:</strong> ${duracao} min</p>
+                                <p><strong>Nota:</strong> ${nota}</p>
+                                <p><strong>Gênero:</strong> ${genero}</p>
+                                </div>
+                            `;
 
-    </script>
-</body>
+                            container.innerHTML += html;
+
+                            // Permite o álbum ser clicado e direciona o usuário para a página do produto
+                            document.querySelector('.album').addEventListener('click', () => {
+                                let dadosProduto = new URLSearchParams(item).toString();
+
+                                dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+                                dadosProduto[0] += item.Capa[0].url;
+
+                                window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
+                            });
+                        }
+
+                    });
+
+                } catch (erro) {
+                    console.error('Erro ao carregar os álbuns:', erro);
+                }
+                }
+
+            carregarAlbuns();  
+
+        </script>
+    </body>
 </html>
