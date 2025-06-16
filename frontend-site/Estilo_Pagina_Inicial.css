@@ -48,6 +48,7 @@ body {
   margin: 5px;
   object-fit: contain;
   cursor: pointer;
+  transition: transform 0.2s ease
 }
 
 .logo:hover {
@@ -67,6 +68,7 @@ body {
 .search button {
   width: 20px;
   height: 20px;
+  margin-right: 10px;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -157,7 +159,7 @@ body {
 }
 
 .button-Sobre-Nos:hover {
-    background: #ff7649;
+    background: #cecece;
     color: #ffffff;
 }
 
@@ -373,15 +375,6 @@ margin: 0;
 }
 
 @media (max-width: 768px) {
-    /* Header */
-    .barra-pesquisa {
-        width: 200px;
-        height: 35px;
-    }
-    
-    #input-pesquisa {
-        font-size: 14px;
-    }
     
     /* Menu */
     .subheader {

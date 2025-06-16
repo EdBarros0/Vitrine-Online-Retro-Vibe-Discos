@@ -44,6 +44,7 @@ header {
   margin: 5px;
   object-fit: contain;
   cursor: pointer;
+  transition: transform 0.2s ease
 }
 
 .logo:hover {

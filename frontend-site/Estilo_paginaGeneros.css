@@ -43,6 +43,7 @@ body{
   margin: 5px;
   object-fit: contain;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .logo:hover {
@@ -62,6 +63,7 @@ body{
 .search button {
   width: 20px;
   height: 20px;
+  margin-right: 10px;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -106,28 +108,12 @@ body{
     cursor: pointer;
     padding: 5px 10px;
     transition: color 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .botao-genero:hover {
     color: #ff7649;
-    text-decoration: underline;
-}
-
-.logo{
-    width: 150px; /* largura padrão */
-    max-width: 100%; /* nunca exceder o tamanho do container */
-    height: auto; /* mantém proporção */
-    cursor: pointer; 
-}
-
-.search{
-  background-color: #fff;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  height: 40px;
+    transform: scale(1.08);
 }
 
 /* Título do gênero */
@@ -140,19 +126,15 @@ body{
 }
 
 .titulo-genero{
-    background-color: #E05338;
     width: 100vw;
-    min-height: 70px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-position: center;
-    background-size: 100% 70px;
+    justify-content: center;
+    padding: 30px 0 0 0;
 }
 
 #texto-genero{
     font-family: 'DM Sans';
-    color: #E05338;
     font-size: 20px;
 }
 
@@ -296,7 +278,10 @@ body{
 }
 
 .album {
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* Estilo da página do produto */
