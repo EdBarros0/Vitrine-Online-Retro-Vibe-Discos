@@ -42,6 +42,11 @@
       <div id="Expositor" class="Expositor">
         <!--Aqui aparecem os discos-->
     </div>
+    <div class="Todos_produtos">
+        <button id="prods">
+            <img src="Assets/Fundo_Botão_Produtos.png" alt="Vinis">
+        </button>
+    </div>
     <h2>Top 20 - Discos mais Bem Avaliados</h2>
     <div class="carousel">
         <button id="prev"><</button>
@@ -89,6 +94,10 @@
         });
         document.querySelector('.lupa').addEventListener('click', () => {
             busca(input.value);
+        });
+
+        document.getElementById('prods').addEventListener('click', () => {
+            busca("");
         });
 
         // Função de busca
