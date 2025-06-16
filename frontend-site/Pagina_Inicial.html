@@ -33,7 +33,6 @@
     <section class="subheader">
     <button id="menu-toggle">☰ Menu</button>
     <div id="menu-generos"> <!-- Mudei de ul para div para ficar consistente -->
-        <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
         <!-- Adicione mais botões conforme necessário -->
     </div>
 </section>
@@ -65,19 +64,40 @@
 
 
     <!--JavaScript do menu-->
-    <script> 
-        const toggleButton = document.getElementById('menu-toggle');
-        const menu = document.getElementById('menu-generos'); // Mude para lista-generos
+ <script>
+    async function carregarGeneros(){
+    try {
+        const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
+        const json = await resposta.json();
 
-        toggleButton.addEventListener('click', () => {
-            menu.classList.toggle('show');
+        // pega todos os gêneros únicos
+        const generos = new Set();
+
+        json.data.forEach(item => {
+            if (item.Genero) { // supondo que o modelo tenha um campo Genero
+                generos.add(item.Genero);
+            }
         });
-        
-        // Função que direciona para o gênero
-        function direcionarPaginaGenero(nomeGenero){
-            window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
-        }
-    </script>
+
+        const menu = document.querySelector("#menu-generos");
+
+        // limpa o menu primeiro
+        menu.innerHTML = "";
+
+        // popula o menu
+        generos.forEach(genero => {
+            menu.innerHTML += `
+                <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">${genero}</button>`;
+        });
+
+    } catch (erro) {
+        console.error('Erro ao carregar gêneros!', erro);
+    }
+    }
+
+    window.onload = carregarGeneros;
+</script>
+
     <!--funções de busca-->
     <script>
         // Pega a pesquisa e faz a busca
