@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <link rel="stylesheet" href="Estilo_Pagina_Inicial.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
 
 
 </head>
@@ -22,7 +22,7 @@
         <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
       </div>
       <div class="search">
-          <button type="submit", title="Buscar", class="lupa">
+          <button type="submit", title="Buscar">
             <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
           </button>
         <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
@@ -40,11 +40,6 @@
         
       <div id="Expositor" class="Expositor">
         <!--Aqui aparecem os discos-->
-    </div>
-    <div class="Todos_produtos">
-        <button id="prods">
-            <img src="Assets/Fundo_Botão_Produtos.png" alt="Vinis">
-        </button>
     </div>
     <h2>Top 20 - Discos mais Bem Avaliados</h2>
     <div class="carousel">
@@ -111,13 +106,6 @@
             if (event.key === "Enter") {
                 busca(input.value);
             }
-        });
-        document.querySelector('.lupa').addEventListener('click', () => {
-            busca(input.value);
-        });
-
-        document.getElementById('prods').addEventListener('click', () => {
-            busca("");
         });
 
         // Função de busca
