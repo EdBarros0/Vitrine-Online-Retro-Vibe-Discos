@@ -29,9 +29,8 @@
     </header>
     <section class="subheader">
         <!-- Lista de gêneros do subheader -->
-        <div id="lista-generos">
+        <div id="menu-generos">
              <!-- O botão só funciona se colocar o nome do gênero no innerHTML -->
-             <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">Rock</button>
         </div>
     </section>
 
@@ -66,14 +65,47 @@
 
     <div id="fundo-preto"></div>
     
-    <script> 
-        const toggleButton = document.getElementById('menu-toggle');
-        const menu = document.getElementById('lista-generos');
 
-        toggleButton.addEventListener('click', () => {
-            menu.classList.toggle('show');
-        });
+        <!--JavaScript do menu-->
+    <script>
+        async function carregarGeneros(){
+        try {
+            const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
+            const json = await resposta.json();
+
+            // pega todos os gêneros únicos
+            const generos = new Set();
+
+            json.data.forEach(item => {
+                if (item.Genero) { // supondo que o modelo tenha um campo Genero
+                    generos.add(item.Genero);
+                }
+            });
+
+            const menu = document.querySelector("#menu-generos");
+
+            // limpa o menu primeiro
+            menu.innerHTML = "";
+
+            // popula o menu
+            generos.forEach(genero => {
+                menu.innerHTML += `
+                    <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">${genero}</button>`;
+            });
+
+        } catch (erro) {
+            console.error('Erro ao carregar gêneros!', erro);
+        }
+        }
+
+        window.onload = carregarGeneros;
+        function direcionarPaginaGenero(nomeGenero){
+        window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
+
+        // Agora ele consegue redirecionar pra pagina de gênero pelo nome correto
+    }
     </script>
+
 
     <script>
         // Voltar pra página inicial pela logo

@@ -28,7 +28,7 @@
     </div>
     </header>
     <section class="subheader">
-        <ul id="lista-generos">
+        <ul id="menu-generos">
             <!-- Lista de gêneros do subheader -->
         </ul>
     </section>
@@ -55,6 +55,48 @@
           </div>
         </div>
   </footer>
+    
+    <!--JavaScript do menu-->
+ <script>
+      async function carregarGeneros(){
+      try {
+          const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
+          const json = await resposta.json();
+
+          // pega todos os gêneros únicos
+          const generos = new Set();
+
+          json.data.forEach(item => {
+              if (item.Genero) { // supondo que o modelo tenha um campo Genero
+                  generos.add(item.Genero);
+              }
+          });
+
+          const menu = document.querySelector("#menu-generos");
+
+          // limpa o menu primeiro
+          menu.innerHTML = "";
+
+          // popula o menu
+          generos.forEach(genero => {
+              menu.innerHTML += `
+                  <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">${genero}</button>`;
+          });
+
+      } catch (erro) {
+          console.error('Erro ao carregar gêneros!', erro);
+      }
+      }
+
+      window.onload = carregarGeneros;
+      function direcionarPaginaGenero(nomeGenero){
+      window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
+
+      // Agora ele consegue redirecionar pra pagina de gênero pelo nome correto
+  }
+
+  </script>
+
     <script>
         // Voltar pra página inicial pela logo
         document.querySelector('.logo').addEventListener('click', () => {
@@ -86,73 +128,12 @@
             <div class="informacoes-disco">
             <h1>${infoDisco.get('album')}</h1>
             <p class="texto-produto"><strong><br>Artista: </strong>${infoDisco.get("Artista")}</p>
-            <p class="texto-produto"><strong>Ano :</strong>${infoDisco.get("Lancamento")}</p>
+            <p class="texto-produto"><strong>Ano: </strong>${infoDisco.get("Lancamento")}</p>
             <p class="texto-produto"><strong>Faixas: </strong>${infoDisco.get("Faixas")}</p>
             <p class="texto-produto"><strong>Duração: </strong>${infoDisco.get("Duracao")}</p>
             <p class="texto-produto"><strong>Nota: </strong>${infoDisco.get("Nota")}</p>
             <p class="texto-produto"><strong>Gênero: </strong>${infoDisco.get("Genero")}</p>
         `;
-
-
-
-
-
-
-        // let nome_produto = 'The Dark Side of the Moon';
-        // let resultado_busca = '';
-        // document.querySelector('#lupa').addEventListener('click', () => {
-        //     resultado_busca = document.querySelector('#input-pesquisa').value;
-        //     console.log(document.querySelector('#input-pesquisa').value);
-        // });
-        // async function carregarProduto() {
-        //     try {
-        //         const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
-        //         const json = await resposta.json();
-        //         const albuns = json.data;
-
-        //         console.log('Álbuns recebidos:', albuns); // DEBUG
-                
-        //         let disco;
-        //         albuns.forEach(item => {
-        //             if (item.album == nome_produto){
-        //                 console.log(new URLSearchParams(window.location.search));
-        //                 disco = item;
-        //             }
-        //         });
-
-        //         let infoDisco = {
-        //             nome: disco.album,
-        //             artista: disco.Artista,
-        //             ano: disco.Lancamento,
-        //             faixas: disco.Faixas,
-        //             duracao: disco.Duracao,
-        //             nota: disco.Nota,
-        //             genero: disco.Genero,
-        //             urlImagem: ''
-        //         };
-
-        //         if (Array.isArray(disco.Capa) && disco.Capa.length > 0 && disco.Capa[0].url) {
-        //             urlImagem = disco.Capa[0].url;
-        //         }
-
-        //         // Adiciona as informações
-        //         document.querySelector('.conteudo').innerHTML = `
-        //             ${urlImagem ? `<img id="imagem-produto" src="${urlImagem}" alt="Capa do álbum ${infoDisco.nome}">` : '<p>Sem imagem</p>'}
-        //             <div class="informacoes-disco">
-        //             <h1>${infoDisco.nome}</h1>
-        //             <p class="texto-produto"><strong><br>Artista: </strong>${infoDisco.artista}</p>
-        //             <p class="texto-produto"><strong>Ano :</strong>${infoDisco.ano}</p>
-        //             <p class="texto-produto"><strong>Faixas: </strong>${infoDisco.faixas}</p>
-        //             <p class="texto-produto"><strong>Duração: </strong>${infoDisco.duracao}</p>
-        //             <p class="texto-produto"><strong>Nota: </strong>${infoDisco.nota}</p>
-        //             <p class="texto-produto"><strong>Gênero: </strong>${infoDisco.genero}</p>
-        //         `;
-        //     }
-        //     catch (erro) {
-        //         console.error('Erro ao carregar os álbuns:', erro);
-        //     }
-        // }
-        // carregarProduto();
 
     </script>
 </body>
