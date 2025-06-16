@@ -166,18 +166,24 @@
                         `;
 
                         container.innerHTML += html;
-
-                        // Permite o álbum ser clicado e direciona o usuário para a página do produto
-                        document.querySelector('.album').addEventListener('click', () => {
-                            let dadosProduto = new URLSearchParams(item).toString();
-
-                            dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
-                            dadosProduto[0] += item.Capa[0].url;
-
-                            window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
-                        });
                     }
 
+                });
+
+                // Permite os álbuns redirecionarem para a página do produto
+                const divs = document.querySelectorAll('.album');
+                divs.forEach(div => {
+                    div.addEventListener('click', () => {
+                        const indice = albuns.findIndex(function (disco) {
+                            return disco.album.toLowerCase() == div.querySelector('h2').innerHTML.toLowerCase();
+                        });
+                        let dadosProduto = new URLSearchParams(albuns[indice]).toString();
+                    
+                        dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+                        dadosProduto[0] += albuns[indice].Capa[0].url;
+
+                        window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
+                    });
                 });
 
             } catch (erro) {
