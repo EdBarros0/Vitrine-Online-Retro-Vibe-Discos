@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="Estilo_paginaGeneros.css">
     
     <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -20,7 +20,7 @@
         <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
       </div>
       <div class="search">
-          <button type="submit", title="Buscar">
+          <button type="submit", title="Buscar", class="lupa">
             <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
           </button>
         <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
@@ -81,12 +81,16 @@
             window.location.href = "/frontend-site/Pagina_Inicial.html";
         });
 
+
         // Pega a pesquisa e faz a busca
         const input = document.getElementById('search');
         input.addEventListener('keydown', function(event) {
             if (event.key === "Enter") {
                 busca(input.value);
             }
+        });
+        document.querySelector('.lupa').addEventListener('click', () => {
+            busca(input.value);
         });
 
         // Função de busca
@@ -112,18 +116,28 @@
 
                 let tipoPagina = '';
                 if (parametrosURL.get('genero') != "null") {
-                    document.querySelector('#texto-genero').innerHTML = '<Strong>Resultados para "' +parametrosURL.get('genero')[0].toUpperCase() + parametrosURL.get('genero').slice(1).toLowerCase() + '"';
+                    document.querySelector('#texto-genero').innerHTML = '<Strong>Resultados para "' +parametrosURL.get('genero')[0].toUpperCase() + parametrosURL.get('genero').slice(1).toLowerCase() + '":';
                 }
                 
                 if (parametrosURL.get('busca') != "null") {
+                    if(parametrosURL.get('busca') == ""){
+                        const html = `
+                        <div id="resultado">
+                            <p id="texto-resultado"><strong>Todos os produtos:<strong></p>
+                        </div>
+
+                        `;
+                        container.innerHTML += html;
+                    }else{
                     const html = `
                         <div id="resultado">
                             <p id="texto-resultado"><strong>Resultados para "${parametrosURL.get('busca')}":<strong></p>
                         </div>
 
-                    `;
+                        `;
+                        container.innerHTML += html;
+                    }
 
-                    container.innerHTML += html;
                 }
 
                 albuns.forEach(item => {

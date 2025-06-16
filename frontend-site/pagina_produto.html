@@ -20,7 +20,7 @@
         <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
       </div>
       <div class="search">
-          <button type="submit", title="Buscar">
+          <button type="submit", title="Buscar", class="lupa">
             <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
           </button>
         <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
@@ -66,6 +66,9 @@
             if (event.key === "Enter") {
                 busca(input.value);
             }
+        });
+        document.querySelector('.lupa').addEventListener('click', () => {
+            busca(input.value);
         });
 
         function busca(pesquisa){

@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="Estilo_Pagina_Informativa.css" />
 
     <!--  Fonte   -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!--   Cabeçalho   -->
@@ -19,7 +19,7 @@
         <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
       </div>
       <div class="search">
-          <button type="submit", title="Buscar">
+          <button type="submit", title="Buscar", class="lupa">
             <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
           </button>
         <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
@@ -74,6 +74,22 @@
         document.querySelector('.logo').addEventListener('click', () => {
             window.location.href = "/frontend-site/Pagina_Inicial.html";
         });
+
+     // Pega a pesquisa e faz a busca
+        const input = document.getElementById('search');
+        input.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                busca(input.value);
+            }
+        });
+        document.querySelector('.lupa').addEventListener('click', () => {
+            busca(input.value);
+        });
+
+     // Função de busca
+        function busca(pesquisa){
+            window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
+        }
         
   </script>
 
