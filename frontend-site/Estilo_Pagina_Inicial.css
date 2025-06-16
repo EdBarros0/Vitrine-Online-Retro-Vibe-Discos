@@ -185,7 +185,7 @@ body {
 .Container-Sobre-Nos {
     padding: 20px;
     background-color: #e05338;
-    width: 100vw;
+    width: 100%;
     min-height: 150px;
     display: flex;
     justify-content: center;
@@ -197,23 +197,62 @@ body {
 
 /* ===== FOOTER ===== */
 .footer {
-    background: #000000;
-    width: 100%;
-    min-height: 120px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    color: #ffffff;
-    flex-wrap: wrap;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #303030;
 }
 
-#informacoes-footer {
-    color: white;
-    margin-bottom: 20px;
+.conteudo-footer{
+  background-color: transparent;
+  color: #fff;
+  display: flex;
+
+  align-items: right;
+  padding: 20px 8rem 20px 10px;
+}
+
+
+.informacoes-footer{
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  max-width: 30vw;
+  margin-right: 5rem;
+}
+
+.informacoes-footer img{
+  width: 10vh;
+}
+
+.informacoes-footer p{
+  margin: 0;
+  padding: 5px;
+}
+
+.ligacoes{
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ligacoes h1 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.ligacoes a {
+  color: #fff;
+  padding: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ligacoes a:hover {
+  color: #e64c3c;
+  text-decoration: underline;
 }
 
 /* ===== BOTÃO DE EMAIL ===== */
@@ -258,7 +297,7 @@ body {
     justify-content: flex-start;
     overflow: hidden;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 0 0 20px 0px;
     position: relative;
 }
 
@@ -290,7 +329,6 @@ body {
     margin-bottom: 20px;
     position: relative;
     padding: 20px;
-    background: #00000070;
     border-radius: 10px;
 }
 
