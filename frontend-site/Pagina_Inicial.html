@@ -135,9 +135,7 @@
         });
 
         function busca(pesquisa) {
-            if (pesquisa != ''){
-                window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
-            }
+            window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
         }
 
         // Expositor
@@ -334,18 +332,12 @@
 
         // Função para redirecionar para página do produto
         function redirecionarParaProduto(album) {
-            const dadosProduto = {
-                album: album.album,
-                artista: album.artista,
-                genero: album.Genero,
-                lancamento: album.Lancamento,
-                duracao: album.Duracao,
-                nota: album.Nota,
-                capa: album.Capa?.[0]?.url || '',
-                descricao: album.Descricao || ''
-            };
-            
-            window.location.href = `pagina_produto.html?disco=${encodeURIComponent(JSON.stringify(dadosProduto))}`;
+            let dadosProduto = new URLSearchParams(album).toString();
+        
+            dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+            dadosProduto[0] += album.Capa[0].url;
+
+            window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
         }
 
         // Menu responsivo
