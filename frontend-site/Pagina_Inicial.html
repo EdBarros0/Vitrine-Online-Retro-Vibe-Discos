@@ -135,7 +135,9 @@
         });
 
         function busca(pesquisa) {
-            window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
+            if (pesquisa != ''){
+                window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
+            }
         }
 
         // Expositor

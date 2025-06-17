@@ -113,7 +113,9 @@
         });
 
         function busca(pesquisa){
-            window.location.href = `/frontend-site/pagina_generos.html?busca=${pesquisa}&genero=null`;
+            if (pesquisa != ''){
+                window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
+            }
         }
 
         function direcionarPaginaGenero(nomeGenero){
