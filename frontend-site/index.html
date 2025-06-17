@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Vibes Disco - Página Inicial</title>
+    <link rel="stylesheet" href="Estilo_Pagina_Inicial.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="marca">
+                <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
+            </div>
+            <div class="search">
+                <button type="submit" title="Buscar">
+                    <img src="Assets/lupa.png" alt="Lupa de pesquisa" height="20px" width="20px">
+                </button>
+                <input type="text" placeholder="Pesquisa" class="search-bar" id="search" />
+            </div>
+        </div>
+    </header>
+
+    <section class="subheader">
+        <button id="menu-toggle">☰ Menu</button>
+        <div id="menu-generos"></div>
+    </section>
+    
+    <div class="conteudo">
+        <div id="Expositor" class="Expositor"></div>
+        
+        <div class="Todos_Produtos">
+            <button id="prods">
+                <img src="Assets/Fundo_Botão_Produtos.png" alt="Botão Todos Os Produtos">
+            </button>
+        </div>
+        
+        <div class="carousel-container">
+            <h2>Top 20 - Discos mais Bem Avaliados</h2>
+            <div class="carousel">
+                <button id="prev">‹</button>
+                <div id="carousel-inner" class="carousel-inner"></div>
+                <button id="next">›</button>
+            </div>
+        </div>
+
+        <div class="carousel-container">
+            <h2>10 Mais Recentes</h2>
+            <div class="carousel">
+                <button class="prev-recentes">‹</button>
+                <div id="carousel-recentes" class="carousel-inner"></div>
+                <button class="next-recentes">›</button>
+            </div>
+        </div>
+
+        <div class="carousel-container">
+            <h2>Top 10 para Maratonar (Mais Longos)</h2>
+            <div class="carousel">
+                <button class="prev-maratona">‹</button>
+                <div id="carousel-maratona" class="carousel-inner"></div>
+                <button class="next-maratona">›</button>
+            </div>
+        </div>
+
+        <div class="Container-Sobre-Nos">
+            <div class="button-Sobre-Nos">
+                <p class="Texto-Sobre-Nos">
+                    <a href="pagina_informativa.html">Venha nos Conhecer</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]"
+        target="_blank" class="botao-email" title="Envie-nos um e-mail">
+        <img src="Assets/envelope.png" alt="Envelope">
+    </a>
+
+    <footer class="footer">
+        <div class="conteudo-footer">
+            <div class="informacoes-footer">
+                <img src="Assets/logo.png" alt="Logo Retro Vibes Disco">
+                <p>Retro Vibes Disco</p>
+                <p>CNPJ: 81.672.563/0001-28</p>
+                <p>Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ</p>
+            </div>
+            <div class="ligacoes">
+                <h1>Menu</h1>
+                <a href="Pagina_Inicial.html">Início</a>
+                <a href="pagina_informativa.html">Quem Somos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function carregarGeneros() {
+            try {
+                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
+                const json = await resposta.json();
+
+                const generos = new Set();
+
+                json.data.forEach(item => {
+                    if (item.Genero) {
+                        generos.add(item.Genero);
+                    }
+                });
+
+                const menu = document.querySelector("#menu-generos");
+                menu.innerHTML = "";
+
+                generos.forEach(genero => {
+                    menu.innerHTML += `
+                        <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">${genero}</button>`;
+                });
+
+            } catch (erro) {
+                console.error('Erro ao carregar gêneros!', erro);
+            }
+        }
+
+        function direcionarPaginaGenero(nomeGenero) {
+            window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
+        }
+
+        // Funções de busca
+        const input = document.getElementById('search');
+        input.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                busca(input.value);
+            }
+        });
+
+        function busca(pesquisa) {
+            window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
+        }
+
+        // Expositor
+        async function exibirSugestaoAleatoria() {
+            try {
+                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+                const json = await resposta.json();
+                const albuns = json.data;
+                const album = albuns[Math.floor(Math.random() * albuns.length)];
+
+                const nome = album.album || 'Sem nome';
+                const urlImagem = album.Capa && album.Capa.length > 0 ? album.Capa[0].url : '';
+
+                document.querySelector("#Expositor").innerHTML = `
+                    <img src="${urlImagem}" alt="${nome}">
+                    <h3>${nome}</h3>`;
+                    
+                // Adiciona evento de clique ao expositor
+                document.querySelector("#Expositor").addEventListener('click', () => {
+                    redirecionarParaProduto(album);
+                });
+            } catch (erro) {
+                console.error('Erro ao exibir sugestão!', erro);
+            }
+        }
+
+        // Carrossel Top 20
+        async function exibirCarouselTop20() {
+            try {
+                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+                const json = await resposta.json();
+                const albuns = json.data;
+
+                const top20 = albuns
+                    .filter(item => item.Nota && !isNaN(item.Nota))
+                    .sort((a, b) => b.Nota - a.Nota)
+                    .slice(0, 20);
+
+                const container = document.querySelector("#carousel-inner");
+                container.innerHTML = '';
+                
+                top20.forEach(album => {
+                    const nome = album.album || 'Sem nome';
+                    const urlImagem = album.Capa && album.Capa.length > 0 ? album.Capa[0].url : '';
+
+                    const item = document.createElement('div');
+                    item.className = 'disco-item';
+                    item.innerHTML = `
+                        <img src="${urlImagem}" alt="${nome}">
+                        <h3>${nome}</h3>`;
+                        
+                    item.addEventListener('click', () => {
+                        redirecionarParaProduto(album);
+                    });
+                    
+                    container.appendChild(item);
+                });
+
+                // Navegação
+                let scrollPosition = 0;
+                document.querySelector("#next").addEventListener("click", () => {
+                    scrollPosition += container.clientWidth / 2;
+                    if (scrollPosition >= container.scrollWidth - container.clientWidth) {
+                        scrollPosition = container.scrollWidth - container.clientWidth;
+                    }
+                    container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                });
+
+                document.querySelector("#prev").addEventListener("click", () => {
+                    scrollPosition -= container.clientWidth / 2;
+                    if (scrollPosition < 0) scrollPosition = 0;
+                    container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                });
+
+            } catch (erro) {
+                console.error('Erro ao exibir Top 20!', erro);
+            }
+        }
+
+        // 10 Mais Recentes
+        async function exibirMaisRecentes() {
+            try {
+                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+                const json = await resposta.json();
+                const albuns = json.data;
+
+                const recentes = [...albuns]
+                    .filter(item => item.Lancamento)
+                    .sort((a, b) => b.Lancamento - a.Lancamento)
+                    .slice(0, 10);
+
+                const container = document.querySelector("#carousel-recentes");
+                container.innerHTML = '';
+
+                recentes.forEach(album => {
+                    const nome = album.album || 'Sem nome';
+                    const urlImagem = album.Capa?.[0]?.url || '';
+                    const ano = album.Lancamento || '';
+
+                    const item = document.createElement('div');
+                    item.className = 'disco-item';
+                    item.innerHTML = `
+                        <img src="${urlImagem}" alt="${nome}">
+                        <h3>${nome} (${ano})</h3>`;
+                        
+                    item.addEventListener('click', () => {
+                        redirecionarParaProduto(album);
+                    });
+                    
+                    container.appendChild(item);
+                });
+
+                // Navegação
+                let scrollPos = 0;
+                document.querySelector(".next-recentes").addEventListener("click", () => {
+                    scrollPos += container.clientWidth / 2;
+                    if (scrollPos > container.scrollWidth - container.clientWidth) {
+                        scrollPos = container.scrollWidth - container.clientWidth;
+                    }
+                    container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                });
+
+                document.querySelector(".prev-recentes").addEventListener("click", () => {
+                    scrollPos -= container.clientWidth / 2;
+                    if (scrollPos < 0) scrollPos = 0;
+                    container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                });
+
+            } catch (erro) {
+                console.error('Erro no carrossel recentes:', erro);
+                document.querySelector("#carousel-recentes").innerHTML = `
+                    <p style="color: #E05338; padding: 20px; text-align: center;">
+                        Erro ao carregar os álbuns recentes
+                    </p>`;
+            }
+        }
+
+        // Top 10 Maratonar
+        async function exibirTopMaratona() {
+            try {
+                const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos?populate=Capa');
+                const json = await resposta.json();
+                const albuns = json.data;
+
+                const maratona = [...albuns]
+                    .filter(item => item.Duracao)
+                    .sort((a, b) => b.Duracao - a.Duracao)
+                    .slice(0, 10);
+
+                const container = document.querySelector("#carousel-maratona");
+                container.innerHTML = '';
+
+                maratona.forEach(album => {
+                    const nome = album.album || 'Sem nome';
+                    const urlImagem = album.Capa?.[0]?.url || '';
+
+                    const item = document.createElement('div');
+                    item.className = 'disco-item';
+                    item.innerHTML = `
+                        <img src="${urlImagem}" alt="${nome}">
+                        <h3>${nome} (${album.Duracao} min)</h3>`;
+                        
+                    item.addEventListener('click', () => {
+                        redirecionarParaProduto(album);
+                    });
+                    
+                    container.appendChild(item);
+                });
+
+                // Navegação
+                let scrollPos = 0;
+                document.querySelector(".next-maratona").addEventListener("click", () => {
+                    scrollPos += container.clientWidth / 2;
+                    if (scrollPos > container.scrollWidth - container.clientWidth) {
+                        scrollPos = container.scrollWidth - container.clientWidth;
+                    }
+                    container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                });
+
+                document.querySelector(".prev-maratona").addEventListener("click", () => {
+                    scrollPos -= container.clientWidth / 2;
+                    if (scrollPos < 0) scrollPos = 0;
+                    container.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                });
+
+            } catch (erro) {
+                console.error('Erro no carrossel maratona:', erro);
+                document.querySelector("#carousel-maratona").innerHTML = `
+                    <p style="color: #E05338; padding: 20px; text-align: center;">
+                        Erro ao carregar os álbuns
+                    </p>`;
+            }
+        }
+
+        // Função para redirecionar para página do produto
+        function redirecionarParaProduto(album) {
+            let dadosProduto = new URLSearchParams(album).toString();
+        
+            dadosProduto = dadosProduto.split("%5Bobject+Object%5D")
+            dadosProduto[0] += album.Capa[0].url;
+
+            window.location.href = `/frontend-site/pagina_produto.html?disco=${dadosProduto[0]}`;
+        }
+
+        // Menu responsivo
+        const toggleButton = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu-generos');
+
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+
+        // Inicialização
+        window.addEventListener('DOMContentLoaded', () => {
+            carregarGeneros();
+            exibirSugestaoAleatoria();
+            exibirCarouselTop20();
+            exibirMaisRecentes();
+            exibirTopMaratona();
+            
+            // Atualiza a sugestão a cada 10 segundos
+            setInterval(exibirSugestaoAleatoria, 10000);
+            
+            // Configura clique no botão de produtos
+            document.getElementById('prods').addEventListener('click', () => {
+                busca("");
+            });
+        });
+    </script>
+</body>
+</html>
