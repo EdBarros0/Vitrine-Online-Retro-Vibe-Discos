@@ -55,7 +55,7 @@
           </div>
           <div class="ligacoes">
             <h1>Menu</h1>
-            <a href="" class="botao_inicial">Início</a>
+            <a href="index.html" class="botao_inicial">Início</a>
             <a href="pagina_informativa.html">Quem Somos</a>
           </div>
         </div>
@@ -108,13 +108,8 @@
     <script>
         // Voltar pra página inicial pela logo
         document.querySelector('.logo').addEventListener('click', () => {
-            window.location.href = `index.html`;
+            window.location.href = "index.html";
         });
-
-        document.querySelector('.botao_inicial').addEventListener('click', () => {
-            window.location.href = `index.html`;
-        });
-
 
         // Pega a pesquisa e faz a busca
         const input = document.getElementById('search');
