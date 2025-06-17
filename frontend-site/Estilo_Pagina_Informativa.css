@@ -86,10 +86,14 @@ header {
 
 .top-bar-2 {
   background: linear-gradient(#202020,#303030);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   height: 40px;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 
@@ -100,6 +104,7 @@ header {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;  
+  transition: trasform 0.2s ease;
 }
 
 .top-bar-2 nav a:hover{

@@ -127,11 +127,12 @@ body {
     cursor: pointer;
     padding: 5px 10px;
     transition: color 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .botao-genero:hover {
     color: #ff7649;
-    text-decoration: underline;
+    transform: scale(1.1);
 }
 
 /*=== Botão Todos Produtos ===*/

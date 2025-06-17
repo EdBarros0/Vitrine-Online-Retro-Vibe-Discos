@@ -28,9 +28,8 @@
     </div>
     </header>
     <section class="subheader">
-        <ul id="menu-generos">
-            <!-- Lista de gêneros do subheader -->
-        </ul>
+        <button id="menu-toggle">☰ Menu</button>
+        <div id="menu-generos"></div>
     </section>
     
     <div class="conteudo">
@@ -136,5 +135,18 @@
         `;
 
     </script>
+
+    <script>
+        //JavaScript responsividade do Menu 
+         const toggleButton = document.getElementById('menu-toggle');
+         const menu = document.getElementById('menu-generos');
+ 
+         toggleButton.addEventListener('click', () => {
+             menu.classList.toggle('show');
+         });
+
+    </script>
+
+
 </body>
 </html>
