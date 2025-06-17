@@ -1,3 +1,4 @@
+/* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +16,7 @@ section, header, main, footer, div {
   background-color: inherit;
 }
 
+/* ===== HEADER ===== */
 header {
   width: 100%;
   top: 0;
@@ -84,6 +86,8 @@ header {
   width: 20rem;
 }
 
+/* ===== SUBHEADER ===== */
+
 .top-bar-2 {
   background: linear-gradient(#202020,#303030);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -111,6 +115,8 @@ header {
   transform: scale(1.1);
 }
 
+/* ===== INFORMAÇÕES SOBRE A LOJA ===== */
+
 .info {
   padding: 50px 8vw 3rem 8vw;
   margin-bottom: -1px;
@@ -133,6 +139,8 @@ header {
   text-align: left;
   width: 100%;
 }
+
+/* ===== ENDEREÇO DA LOJA E MAPA ===== */
 
 .endereco {
   display: flex;
@@ -171,6 +179,8 @@ header {
   margin-bottom: 80px;
   cursor: pointer;
 }
+
+/* ===== FOOTER ===== */
 
 .footer {
   display: flex;
@@ -230,6 +240,8 @@ header {
   text-decoration: underline;
 }
 
+
+/* ===== BOTÃO DE EMAIL ===== */
 .botao-email {
   position: fixed;
   bottom: 20px;
