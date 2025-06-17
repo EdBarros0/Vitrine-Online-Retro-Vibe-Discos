@@ -139,7 +139,6 @@
 
                 const parametrosURL = new URLSearchParams(window.location.search);
 
-                let tipoPagina = '';
                 if (parametrosURL.get('genero') != "null") {
                     document.querySelector('#texto-genero').innerHTML = '<Strong>Resultados para "' +parametrosURL.get('genero')[0].toUpperCase() + parametrosURL.get('genero').slice(1).toLowerCase() + '":';
                 }
@@ -165,8 +164,11 @@
 
                 }
 
+                let temResultado = false;
                 albuns.forEach(item => {
                     if (item.Genero.toLowerCase() == parametrosURL.get('genero').toLowerCase() || item.album.toLowerCase().includes(parametrosURL.get('busca').toLowerCase())) {
+                        temResultado = true;
+
                         const album = item.album || 'Sem nome';
                         const artista = item.Artista || 'Desconhecido';
                         const lancamento = item.Lancamento || 'Ano desconhecido';
@@ -206,8 +208,11 @@
 
                         container.innerHTML += html;
                     }
-
                 });
+
+                if (temResultado == false) {
+                    container.innerHTML += `<h2>Não há resultados para essa busca</h2>`;
+                }
 
                 // Permite os álbuns redirecionarem para a página do produto
                 const divs = document.querySelectorAll('.album');
