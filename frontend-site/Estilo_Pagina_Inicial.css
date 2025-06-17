@@ -227,7 +227,6 @@ body {
     display: flex;
     align-items: flex-start;
     padding: 0 8rem;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
