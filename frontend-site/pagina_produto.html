@@ -3,125 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Produto</title>
     <link rel="stylesheet" href="Estilo_paginaGeneros.css">
-    
-    <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header (Logo e Barra de pesquisa) -->
     <header class="header">
-        <!--cabeçalho do site-->
         <div class="top-bar">
-      <div class="marca">
-        <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
-      </div>
-      <div class="search">
-          <button type="submit", title="Buscar", class="lupa">
-            <img src="Assets/lupa.png" alt="Lupa de pesquisa", height="20px", width="20px">
-          </button>
-        <input type="text" placeholder="Pesquisa" class="search-bar" id="search"/>
-      </div>
-    </div>
+            <div class="marca">
+                <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
+            </div>
+            <div class="search">
+                <button type="submit" title="Buscar" class="lupa">
+                    <img src="Assets/lupa.png" alt="Lupa de pesquisa" height="20px" width="20px">
+                </button>
+                <input type="text" placeholder="Pesquisa" class="search-bar" id="search" />
+            </div>
+        </div>
     </header>
+
+    <!-- Subheader (Opções de gêneros) -->
     <section class="subheader">
         <button id="menu-toggle">☰ Menu</button>
         <div id="menu-generos"></div>
     </section>
     
+    <!-- Conteúdo (Mostra um álbum específico) -->
     <div class="conteudo">
     </div>
 
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
-    <img src="Assets/envelope.png" alt="Envelope">
+    <!-- Botão de contato -->
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]"
+        target="_blank" class="botao-email" title="Envie-nos um e-mail">
+        <img src="Assets/envelope.png" alt="Envelope">
     </a>
 
+    <!-- Footer (Informações e outros direcionamentos) -->
     <footer class="footer">
         <div class="conteudo-footer">
-          <div class="informacoes-footer">
-            <img src="Assets/logo.png" alt="Logo Retro Vibes Disco">
-            <p>Retro Vibes Disco</p>
-            <p>CNPJ: 81.672.563/0001-28</p>
-            <p>Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ</p>
-          </div>
-          <div class="ligacoes">
-            <h1>Menu</h1>
-            <a href="index.html">Início</a>
-            <a href="pagina_informativa.html">Quem Somos</a>
-          </div>
+            <div class="informacoes-footer">
+                <img src="Assets/logo.png" alt="Logo Retro Vibes Disco">
+                <p>Retro Vibes Disco</p>
+                <p>CNPJ: 81.672.563/0001-28</p>
+                <p>Avenida Nossa senhora da assunção, 781, Centro, Cabo Frio/ RJ</p>
+            </div>
+            <div class="ligacoes">
+                <h1>Menu</h1>
+                <a href="index.html">Início</a>
+                <a href="pagina_informativa.html">Quem Somos</a>
+            </div>
         </div>
-  </footer>
+    </footer>
     
     <!--JavaScript do menu-->
- <script>
-      async function carregarGeneros(){
-      try {
-          const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
-          const json = await resposta.json();
-
-          // pega todos os gêneros únicos
-          const generos = new Set();
-
-          json.data.forEach(item => {
-              if (item.Genero) { // supondo que o modelo tenha um campo Genero
-                  generos.add(item.Genero);
-              }
-          });
-
-          const menu = document.querySelector("#menu-generos");
-
-          // limpa o menu primeiro
-          menu.innerHTML = "";
-
-          // popula o menu
-          generos.forEach(genero => {
-              menu.innerHTML += `
-                  <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">${genero}</button>`;
-          });
-
-      } catch (erro) {
-          console.error('Erro ao carregar gêneros!', erro);
-      }
-      }
-
-      window.onload = carregarGeneros;
-      function direcionarPaginaGenero(nomeGenero){
-      window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
-
-      // Agora ele consegue redirecionar pra pagina de gênero pelo nome correto
-  }
-
-  </script>
-
     <script>
+        // Função que carrega as opções de gêneros no subheader
+        async function carregarGeneros(){
+        try {
+            const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
+            const json = await resposta.json();
+
+            const generos = new Set();
+
+            json.data.forEach(item => {
+                if (item.Genero) { 
+                    generos.add(item.Genero);
+                }
+            });
+
+            const menu = document.querySelector("#menu-generos");
+
+            menu.innerHTML = "";
+
+            generos.forEach(genero => {
+                menu.innerHTML += `
+                    <button class="botao-genero" onclick="direcionarPaginaGenero(this.innerHTML)">${genero}</button>`;
+            });
+
+        } catch (erro) {
+            console.error('Erro ao carregar gêneros!', erro);
+        }
+        }
+
+        window.onload = carregarGeneros;
+
+        // Função usada para acessar a página de gêneros
+        function direcionarPaginaGenero(nomeGenero){
+            window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
+        }
+
         // Voltar pra página inicial pela logo
         document.querySelector('.logo').addEventListener('click', () => {
             window.location.href = "index.html";
         });
 
+
+        // ------ Funções de busca ----------
         const input = document.getElementById('search');
         input.addEventListener('keydown', function(event) {
             if (event.key === "Enter") {
                 busca(input.value);
             }
         });
+
         document.querySelector('.lupa').addEventListener('click', () => {
             busca(input.value);
         });
 
-        function busca(pesquisa){
-            if (pesquisa != ''){
-                window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
-            }
+        function busca(pesquisa) {
+            window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
         }
-
+        // ----------------------------------
+        
+        // Função usada para acessar a página de gêneros
         function direcionarPaginaGenero(nomeGenero){
             window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
         }
 
+        // Adição do álbum na página
         const infoDisco = new URLSearchParams(window.location.search);
 
         document.querySelector('.conteudo').innerHTML = `
@@ -136,19 +136,14 @@
             <p class="texto-produto"><strong>Gênero: </strong>${infoDisco.get("Genero")}</p>
         `;
 
-    </script>
-
-    <script>
         //JavaScript responsividade do Menu 
-         const toggleButton = document.getElementById('menu-toggle');
-         const menu = document.getElementById('menu-generos');
- 
-         toggleButton.addEventListener('click', () => {
-             menu.classList.toggle('show');
-         });
+        const toggleButton = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu-generos');
 
+        toggleButton.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+        
     </script>
-
-
 </body>
 </html>

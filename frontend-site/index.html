@@ -10,13 +10,14 @@
 </head>
 
 <body>
+    <!-- Header (Logo e Barra de pesquisa) -->
     <header class="header">
         <div class="top-bar">
             <div class="marca">
                 <img src="Assets/logo.png" alt="Logo Retrô Vibes Disco" class="logo">
             </div>
             <div class="search">
-                <button type="submit" title="Buscar">
+                <button type="submit" title="Buscar" class="lupa">
                     <img src="Assets/lupa.png" alt="Lupa de pesquisa" height="20px" width="20px">
                 </button>
                 <input type="text" placeholder="Pesquisa" class="search-bar" id="search" />
@@ -24,11 +25,16 @@
         </div>
     </header>
 
+    <!-- Subheader (Opções de gêneros) -->
     <section class="subheader">
         <button id="menu-toggle">☰ Menu</button>
         <div id="menu-generos"></div>
     </section>
     
+    <!-- Conteúdo (Expositor de discos,
+    Direcionamento para todos os produtos,
+    Carrosseis de diferentes discos)
+    -->
     <div class="conteudo">
         <div id="Expositor" class="Expositor"></div>
         
@@ -74,11 +80,13 @@
         </div>
     </div>
 
+    <!-- Botão de contato -->
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]"
         target="_blank" class="botao-email" title="Envie-nos um e-mail">
         <img src="Assets/envelope.png" alt="Envelope">
     </a>
 
+    <!-- Footer (Informações e outros direcionamentos) -->
     <footer class="footer">
         <div class="conteudo-footer">
             <div class="informacoes-footer">
@@ -95,7 +103,9 @@
         </div>
     </footer>
 
+    <!--JavaScript do menu-->
     <script>
+        // Função que carrega as opções de gêneros no subheader
         async function carregarGeneros() {
             try {
                 const resposta = await fetch('https://victorious-respect-e86045708d.strapiapp.com/api/produtos');
@@ -122,11 +132,12 @@
             }
         }
 
+        // Função usada para acessar a página de gêneros
         function direcionarPaginaGenero(nomeGenero) {
             window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
         }
 
-        // Funções de busca
+        // ------ Funções de busca ----------
         const input = document.getElementById('search');
         input.addEventListener('keydown', function(event) {
             if (event.key === "Enter") {
@@ -134,9 +145,14 @@
             }
         });
 
+        document.querySelector('.lupa').addEventListener('click', () => {
+            busca(input.value);
+        });
+
         function busca(pesquisa) {
             window.location.href = `pagina_generos.html?busca=${pesquisa}&genero=null`;
         }
+        // ----------------------------------
 
         // Expositor
         async function exibirSugestaoAleatoria() {
@@ -348,7 +364,7 @@
             menu.classList.toggle('show');
         });
 
-        // Inicialização
+        // Inicialização da página
         window.addEventListener('DOMContentLoaded', () => {
             carregarGeneros();
             exibirSugestaoAleatoria();
