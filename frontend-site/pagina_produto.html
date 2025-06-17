@@ -36,7 +36,7 @@
     </div>
 
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gbramalholm@gmail.com&su=Gostaria de saber mais sobre seus produtos.&body=Olá!%0D%0A%0D%0AVi seu site e gostaria de mais informações sobre seus produtos.%0D%0A%0D%0AObrigado(a)!%0D%0A[Seu nome]" target="_blank" class="botao-email" title="Envie-nos um e-mail">
-    <img src="/frontend-site/Assets/envelope.png" alt="Envelope">
+    <img src="Assets/envelope.png" alt="Envelope">
     </a>
 
     <footer class="footer">
@@ -49,7 +49,7 @@
           </div>
           <div class="ligacoes">
             <h1>Menu</h1>
-            <a href="Pagina_Inicial.html">Início</a>
+            <a href="index.html">Início</a>
             <a href="pagina_informativa.html">Quem Somos</a>
           </div>
         </div>
@@ -99,7 +99,7 @@
     <script>
         // Voltar pra página inicial pela logo
         document.querySelector('.logo').addEventListener('click', () => {
-            window.location.href = "/frontend-site/Pagina_Inicial.html";
+            window.location.href = "index.html";
         });
 
         const input = document.getElementById('search');
@@ -119,7 +119,7 @@
         }
 
         function direcionarPaginaGenero(nomeGenero){
-            window.location.href = `/frontend-site/pagina_generos.html?busca=null&genero=${nomeGenero}`;
+            window.location.href = `pagina_generos.html?busca=null&genero=${nomeGenero}`;
         }
 
         const infoDisco = new URLSearchParams(window.location.search);
